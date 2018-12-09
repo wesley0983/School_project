@@ -31,7 +31,7 @@ CONSTRAINT MEMBERLIST_PK PRIMARY KEY (MEM_NO));
 -- Insert into MEMBERLIST (MEM_NO) values (0000003);
 -- Insert into MEMBERLIST (MEM_NO) values (0000004);
 
---------------------------------------------------------
+--------------21----------------------------------------
 --  for Table ORD 訂單
 --------------------------------------------------------
 CREATE TABLE ORD (
@@ -56,7 +56,7 @@ CREATE SEQUENCE ORD_SEQ
 -- INSERT INTO ORD (ORD_NO,MEM_NO,ORD_DATE,ORD_DELDATE,ORD_STATUS,ORD_BACKDELDATE,ORD_AMOUNT,ORD_BACKAMOUNT) values (to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(ord_seq.NEXTVAL), 11, '0'),0000001,CURRENT_TIMESTAMP,CURRENT_TIMESTAMP,0000000001,CURRENT_TIMESTAMP,0000001,0000001)
 -- Insert into ORD (ORD_NO,MEM_NO,ORD_DATE,ORD_DELDATE,ORD_STATUS,ORD_BACKDELDATE,ORD_AMOUNT,ORD_BACKAMOUNT) values (to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(ord_seq.NEXTVAL), 6, '0'),'M000001','1','湯姆貓','0988888888','320','桃園市中壢區福德一路177巷60弄2號',60000,sysdate);
 
---------------------------------------------------------
+------------------22------------------------------------
 --  for Table PRODUCTCLASS 商品類別
 --------------------------------------------------------
 CREATE TABLE PRODUCTCLASS(
@@ -73,7 +73,7 @@ CREATE SEQUENCE PRODUCTCLASS_SEQ
     NOCACHE
     ORDER;
 
---------------------------------------------------------
+----------------23--------------------------------------
 --  for Table PRODUCT 商品
 --------------------------------------------------------
 CREATE TABLE PRODUCT(
@@ -103,7 +103,7 @@ CREATE SEQUENCE PRODUCT_SEQ
     NOCACHE 
     ORDER;
 
---------------------------------------------------------
+-------------------24-----------------------------------
 --  for Table ORDDETAILS 訂單明細
 --------------------------------------------------------
 CREATE TABLE ORDDETAILS(
@@ -121,7 +121,7 @@ CREATE TABLE ORDDETAILS(
 -- ORD_PROBONUNS,
 -- PRO_COUNT) values ()
 
---------------------------------------------------------
+--------------------26----------------------------------
 --  for Table SHOPPINGCART 購物車  <<會用Redis
 --------------------------------------------------------
 CREATE TABLE SHOPPINGCART(
@@ -133,7 +133,7 @@ CREATE TABLE SHOPPINGCART(
 );
 
 
---------------------------------------------------------
+------------------27------------------------------------
 --  for Table PROMOTION 促銷專案
 --------------------------------------------------------
 CREATE TABLE PROMOTION(
@@ -152,7 +152,7 @@ CREATE SEQUENCE PROMOTION_SEQ
     NOCACHE
     ORDER;
 
---------------------------------------------------------
+--------------------28----------------------------------
 --  for Table PRO_DETAIL_PROM 商品促銷明細
 --------------------------------------------------------
 CREATE TABLE PRO_DETAIL_PROM(
