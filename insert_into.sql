@@ -1,10 +1,10 @@
 --------------------------------------------------------
 --  測試會員表格<<正翰要注意
 --------------------------------------------------------
-Insert into MEMBERLIST (MEM_NO) values (0000001);
-Insert into MEMBERLIST (MEM_NO) values (0000002);
-Insert into MEMBERLIST (MEM_NO) values (0000003);
-Insert into MEMBERLIST (MEM_NO) values (0000004);
+Insert into MEMBERLIST (MEM_NO) values ('M001');
+Insert into MEMBERLIST (MEM_NO) values ('M002');
+Insert into MEMBERLIST (MEM_NO) values ('M003');
+Insert into MEMBERLIST (MEM_NO) values ('M004');
 
 --------------------------------------------------------
 --  for Table PRODUCTCLASS 商品類別
@@ -21,8 +21,8 @@ PROM_PROJECT_SDATE,
 PROM_PROJECT_EDATE) values 
     ('PR'||LPAD(to_char(PROMOTION_SEQ.NEXTVAL), 3, '0'),
     '母親節優惠',
-    to_date('2019-05-2','YYYY-MM-DD'),
-    to_date('2019-05-12','YYYY-MM-DD')
+    to_timestamp('2019-05-2','YYYY-MM-DD'),
+    to_timestamp('2019-05-12','YYYY-MM-DD')
 );
 
 Insert into PROMOTION (PROM_PROJECT_ID,
@@ -31,8 +31,8 @@ PROM_PROJECT_SDATE,
 PROM_PROJECT_EDATE) values 
     ('PR'||LPAD(to_char(PROMOTION_SEQ.NEXTVAL), 3, '0'),
     '聖誕節優惠',
-    to_date('2019-12-15','YYYY-MM-DD'),
-    to_date('2019-12-25','YYYY-MM-DD')
+    to_timestamp('2019-12-15','YYYY-MM-DD'),
+    to_timestamp('2019-12-25','YYYY-MM-DD')
 );
 
 --------------------------------------------------------
@@ -62,8 +62,8 @@ NULL,
 2000,
 20,
 5,
-'DETAILS',
-'ON',
+'DETAILS..........',
+'上架中',
 5,
 10
 );
@@ -80,11 +80,11 @@ ORD_BACKDELDATE,
 ORD_AMOUNT,
 ORD_BACKAMOUNT
 ) values (
-to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(ORD_SEQ.NEXTVAL),11, '0'),
-0000001,
+to_char(sysdate,'yyyymmdd')||'-'||LPAD(to_char(ORD_SEQ.NEXTVAL),6, '0'),
+'M001',
 CURRENT_TIMESTAMP,
 CURRENT_TIMESTAMP,
-0000000001,
+'待出貨',
 CURRENT_TIMESTAMP,
 0000001,
 0000001
@@ -100,11 +100,11 @@ PRO_NO,
 ORD_PROBONUNS,
 PRO_COUNT    
 ) values (
-'20181209-00000000001',
+to_char(sysdate,'yyyymmdd')||'-000001',
 'PR001',
 3400,
 5
 );
 
 
-
+COMMIT;
