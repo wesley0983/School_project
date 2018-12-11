@@ -6,13 +6,13 @@ Insert into MEMBERLIST (MEM_NO) values ('M002');
 Insert into MEMBERLIST (MEM_NO) values ('M003');
 Insert into MEMBERLIST (MEM_NO) values ('M004');
 
---------------------------------------------------------
+------------------22------------------------------------
 --  for Table PRODUCTCLASS 商品類別
 --------------------------------------------------------
 Insert into PRODUCTCLASS (PRO_CLASSID,PRO_CLASSNAME) values ('PT'||LPAD(to_char(PRODUCTCLASS_SEQ.NEXTVAL), 3, '0'),'CLOTHING');
 Insert into PRODUCTCLASS (PRO_CLASSID,PRO_CLASSNAME) values ('PT'||LPAD(to_char(PRODUCTCLASS_SEQ.NEXTVAL), 3, '0'),'SHOES');
 
---------------------------------------------------------
+------------------27------------------------------------
 --  for Table PROMOTION 促銷專案
 --------------------------------------------------------
 Insert into PROMOTION (PROM_PROJECT_ID,
@@ -35,7 +35,7 @@ PROM_PROJECT_EDATE) values
     to_timestamp('2019-12-25','YYYY-MM-DD')
 );
 
---------------------------------------------------------
+----------------23--------------------------------------
 --  for Table PRODUCT 商品
 --------------------------------------------------------
 Insert into PRODUCT (
@@ -53,7 +53,7 @@ PRO_SHELVE,
 PRO_ALL_ASSESS,
 PRO_ALL_ASSESSMAN
 ) values (
-'PR'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 3, '0'),
+'P'||LPAD(to_char(PRODUCT_SEQ.NEXTVAL), 3, '0'),
 'PT001',
 'Nikex',
 NULL,
@@ -68,7 +68,7 @@ NULL,
 10
 );
 
---------------------------------------------------------
+--------------21----------------------------------------
 --  for Table ORD 訂單
 --------------------------------------------------------
 Insert into ORD (ORD_NO,
@@ -91,7 +91,7 @@ CURRENT_TIMESTAMP,
 );
 
 
---------------------------------------------------------
+-------------------24-----------------------------------
 --  for Table ORDDETAILS 訂單明細
 --------------------------------------------------------
 Insert into ORDDETAILS(
@@ -101,9 +101,23 @@ ORD_PROBONUNS,
 PRO_COUNT    
 ) values (
 to_char(sysdate,'yyyymmdd')||'-000001',
-'PR001',
+'P001',
 3400,
 5
+);
+
+
+--------------------28----------------------------------
+--  for Table PRO_DETAIL_PROM 商品促銷明細
+--------------------------------------------------------
+Insert into PRO_DETAIL_PROM(
+    PROM_PROJECT_ID,
+    PRO_NO,
+    PRO_SALE
+) values (
+    'PR001',
+    'P001',
+    7000
 );
 
 
