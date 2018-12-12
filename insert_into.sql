@@ -71,7 +71,8 @@ NULL,
 --------------21----------------------------------------
 --  for Table ORD 訂單
 --------------------------------------------------------
-Insert into ORD (ORD_NO,
+Insert into ORD (
+ORD_NO,
 MEM_NO,
 ORD_DATE,
 ORD_DELDATE,
