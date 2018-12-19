@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-		<title>Title Page</title>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-		<!--[if lt IE 9]>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<title>Title Page</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<!--[if lt IE 9]>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
-		<style type="text/css">
+	<style type="text/css">
 		.aa {
 			height: 300px;
 			background-color: #faa;
+
 		}
 
 		.bb {
@@ -32,82 +34,229 @@
 		}
 
 		.test {
-			background-color: #aba;
+			background-color: rgb(13, 136, 13);
 		}
-		</style>
-	</head>
-	<body>
-		
-		<div class="container-fluid">
-			<div class="row">
 
-			    <div class="container-fluid ">
-			    	<div class="row">
-			    		<!-- navbar -->
-						<nav class="navbar navbar-default" role="navigation">
-							<div class="container">
-								<div class="navbar-header">
-									<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-										<span class="sr-only">選單切換</span>
-										<span class="icon-bar"></span>
-										<span class="icon-bar"></span>
-										<span class="icon-bar"></span>
-									</button>
-									<a class="navbar-brand" href="#">SPORTGO</a>
-								</div>
-								
-								<!-- 手機隱藏選單區 -->
-								<div class="collapse navbar-collapse navbar-ex1-collapse">
-									<!-- 左選單 -->
-									<ul class="nav navbar-nav">
-										<li class="active"><a href="#">我的商品</a></li>
-										<li><a href="#">我的賣場分類</a></li>
-										<li><a href="#">我的銷售</a></li>
-										<li><a href="#">我的行銷活動</a></li>
-										<li><a href="#">我的進帳</a></li>
-										<li><a href="#">我的錢包</a></li>
-										<li><a href="#">賣場設定</a></li>
-									</ul>
-									<!-- 右選單 -->
-									<ul class="nav navbar-nav navbar-right">
-										
-										<li><a href="#"></a></li>
-										<li><a href="#">個人設定</a></li>
-										<li class="dropdown">
-											<a href="#" class="dropdown-toggle" data-toggle="dropdown">繁體中文 <b class="caret"></b></a>
-											<ul class="dropdown-menu">
-												<li><a href="#">切換成買家</a></li>
-												<li><a href="#">登出</a></li>
-											</ul>
-										</li>
-									</ul>
-								</div>
-								<!-- 手機隱藏選單區結束 -->
-							</div>
-						</nav>
-			    	</div>
-			    </div>
-
-		    
-			    <div class="container-fluid">
-			    	<div class="row">
-			    		<!-- 容器區 -->
-
-			            		<div class="col-xs-12 col-sm-2 col-sm-offset-1 aa">1</div>
-			            		<div class="col-xs-12 col-sm-2 bb">2</div>
-			            		<div class="col-xs-12 col-sm-2 cc">2</div>
-			            		<div class="col-xs-12 col-sm-2 dd">300</div>
-			            		<div class="col-xs-12 col-sm-2 aa">4</div>
-
-			    	</div>
-			    </div>
+		.warp {
+			box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, .09);
+			background-color: rgb(252, 252, 253);
+			padding: 20px 48px;
+			width: 1200px;
+			margin: auto;
             
-		
+		}
+		.warpwidth{
+			width: 1104px;
+		}
+		.fontsize{
+		    font-size: 18px;
+		    font-weight: 400;
+		    color: #000;
+		    margin: 30px 0 15px;
+		}
+		.fontsize_s{
+			min-height: 40px;
+    		color: #666;
+		}
+
+
+
+
+	</style>
+</head>
+
+<body>
+
+	<div class="container-fluid">
+		<div class="row">
+
+			<div class="container-fluid ">
+				<div class="row">
+					<!-- navbar -->
+					<nav class="navbar navbar-default" role="navigation">
+						<div class="container">
+							<div class="navbar-header">
+								<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+									<span class="sr-only">選單切換</span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								</button>
+								<a class="navbar-brand" href="#">SPORTGO</a>
+							</div>
+
+							<!-- 手機隱藏選單區 -->
+							<div class="collapse navbar-collapse navbar-ex1-collapse">
+								<!-- 左選單 -->
+								<ul class="nav navbar-nav">
+									<li class="active">
+										<a href="#">我的商品</a>
+									</li>
+									<li>
+										<a href="#">我的賣場分類</a>
+									</li>
+									<li>
+										<a href="#">我的銷售</a>
+									</li>
+									<li>
+										<a href="#">我的行銷活動</a>
+									</li>
+									<li>
+										<a href="#">我的進帳</a>
+									</li>
+									<li>
+										<a href="#">我的錢包</a>
+									</li>
+									<li>
+										<a href="#">賣場設定</a>
+									</li>
+								</ul>
+								<!-- 右選單 -->
+								<ul class="nav navbar-nav navbar-right">
+
+									<li>
+										<a href="#"></a>
+									</li>
+									<li>
+										<a href="#">個人設定</a>
+									</li>
+									<li class="dropdown">
+										<a href="#" class="dropdown-toggle" data-toggle="dropdown">繁體中文
+											<b class="caret"></b>
+										</a>
+										<ul class="dropdown-menu">
+											<li>
+												<a href="#">切換成買家</a>
+											</li>
+											<li>
+												<a href="#">登出</a>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+							<!-- 手機隱藏選單區結束 -->
+						</div>
+					</nav>
+				</div>
 			</div>
-		</div>		
-		
-		
-		<script src="https://code.jquery.com/jquery.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	</body>
+
+
+			<div class="container-fluid warp">
+                <div class="row">
+				<!-- 容器區 -->
+				    <div class="container-fluid warpwidth">
+				    	<div class="row">
+				    		<div>
+				    			<h2 class="fontsize">編輯商品照片</h2>
+				    		</div>
+				    		<!-- 檔案上傳 -->
+				    		<div>
+				    			<input type="file" name="pro_pic" id="file01">
+				    		</div>
+                            <!-- 圖片預覽 -->
+				    		<div>
+				    			<img id="pre01">
+				    		</div>
+				    		<div>
+				    		     <h2 class="fontsize">商品資訊</h2>
+				    		</div>
+				    		<!-- 表單 -->
+				    		<FORM METHOD="post" ACTION="pro.do" name="form1" enctype="multipart/form-data">
+				    			<div class="container-fluid">
+					    			<!-- 文字表格 -->
+					    			<div class="row">
+					    				<div class="col-xs-12 col-sm-1 aa "></div>
+					    				<!-- 內容詳情 -->
+					    				<div class="col-xs-12 col-sm-10 bb">
+					    					<div class="fontsize_s">
+					    						商品類別 : 用選的
+					    						
+					    					</div>
+					    					<div class="fontsize_s">
+					    						商品名稱 :
+					    						<input type="TEXT" name="ename" size="45" value="<%= (proVO==null)? "吳永志" : proVO.getPro_name()%>" />
+					    					</div>
+					    					<div class="fontsize_s">
+					    						照片副檔名 :
+					    						<input type="TEXT" name="pic_ext" size="45" value="<%= (proVO==null)? "MANAGER" : proVO.getPro_pic_ext()%>" />
+					    					</div>
+					    					<div class="fontsize_s">
+					    						商品規格 :
+					    						<input type="TEXT" name="format" size="45" value="<%= (proVO==null)? "MANAGER" : proVO.getPro_format()%>" />
+					    					</div>
+					    					<div class="fontsize_s">
+					    						商品單價 :
+					    						<input type="TEXT" name="bonus" size="45" value="<%= (proVO==null)? "123" : proVO.getPro_bonus()%>" />
+					    					</div>
+					    					<div class="fontsize_s">
+					    						商品庫存量 :
+					    						<input type="TEXT" name="stock" size="45" value="<%= (proVO==null)? "123" : proVO.getPro_stock()%>" />
+					    					</div>
+					    					<div class="fontsize_s">
+					    						商品安全庫存量 :
+					    						<input type="TEXT" name="safestock" size="45" value="<%= (proVO==null)? "123" : proVO.getPro_safestock()%>" />
+					    					</div>
+					    					<div class="fontsize_s">
+					    						商品詳述 :
+					    						<input type="TEXT" name="details" size="45" value="<%= (proVO==null)? "MANAGER" : proVO.getPro_details()%>" />
+					    					</div>
+					    					<div class="fontsize_s">
+					    						商品狀態 :
+					    						<input type="TEXT" name="shelve" size="45" value="<%= (proVO==null)? "MANAGER" : proVO.getPro_shelve()%>" />
+					    					</div>
+					    					<div class="fontsize_s">
+					    						商品總評價 :
+					    						<input type="TEXT" name="assess" size="45" value="<%= (proVO==null)? "123" : proVO.getPro_all_assess()%>" />
+					    					</div>
+					    					<div class="fontsize_s">
+					    						商品評價總人數 :
+					    						<input type="TEXT" name="assessman" size="45" value="<%= (proVO==null)? "123" : proVO.getPro_all_assessman()%>" />
+					    					</div>
+
+					    				</div>
+					    				<div class="col-xs-12 col-sm-1 cc"></div>
+					    			</div>
+				    			</div>
+				    			<!-- 送出按鈕 -->
+					    		<div>
+					    			<input type="hidden" name="action" value="insert">
+									<input type="submit" value="送出新增">
+					    		</div>
+					    	</FORM>
+				    	</div>
+				    </div>
+                
+
+                </div>
+			</div>
+
+<div class="container">
+	
+</div>
+		</div>
+	</div>
+
+
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		document.getElementById("display").style.display = 'none';
+	    $(function() {  //將圖片預覽
+	    	$('input[type=file]').change(function() {
+	      	var input = $(this);
+	      	document.getElementById("preset").style.display = 'none';
+	      	document.getElementById("display").style.display = 'block';
+	      	if(!!this.files && !!this.files[0]) {
+	        	var reader = new FileReader();
+	          reader.onload = function(e) {
+	          	$('#pre' + input.prop('id').substr(4,2)).prop('src', e.target.result);
+	          }
+	          reader.readAsDataURL(this.files[0]);
+	        }
+	      });
+	    });
+	</script>
+</body>
+
 </html>
