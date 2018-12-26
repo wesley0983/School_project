@@ -1,12 +1,15 @@
+<%@page import="java.util.List"%>
 <%@page import="com.product.model.*"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 
 <%
-	ProductVO proVO = (ProductVO) request.getAttribute("proVO"); //EmpServlet.java (Concroller) 存入req的proVO物件 (包括幫忙取出的proVO, 也包括輸入資料錯誤時的proVO物件)
-    
-%> 
+    ProductService proSvc = new ProductService();
+	ProductVO proVO = (ProductVO) request.getAttribute("proVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
+	List<ProductVO> list = proSvc.getAll();
+    pageContext.setAttribute("list",list);
+%>
+<jsp:useBean id="proclassSvc" scope="page" class="com.productclass.model.ProductClassService" />
+
 
 <!DOCTYPE html>
 <html lang="">
@@ -248,6 +251,10 @@
 								    						</div>
 								    						<div>
 								    							<input type="button" name="" value="加入購物車">
+								    						</div>
+								    						<div>
+								    							<input type="submit" name="" value="直接購買">
+								    							<input type="hidden" name="action" value="insert">
 								    						</div>
 								    					</div>
 								    				</div>
