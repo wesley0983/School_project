@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>商品資料新增</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/TibameF3_MVC_ShoppingCart_WebSocket/resources/css/addProduct.css">
+<script src="/TibameF3_MVC_ShoppingCart_WebSocket/resources/js/jquery-1.11.3.min.js"></script>
+
+</head>
+<body>
+<br>
+<table class="wwFormTable">
+	<tr><td style="text-align:center;"><h3>Mode II 範例程式 - addProduct.jsp</h3>
+		    <h4>登入者:  在線上</h4>
+	         <a href="/TibameF3_MVC_ShoppingCart_WebSocket/Backend-index.jsp"><img src="/TibameF3_MVC_ShoppingCart_WebSocket/images/add.png" class="img1"></a>
+	</td></tr>
+</table>
+
+<h2>商品新增</h2>
+
+<form method="post" action="/TibameF3_MVC_ShoppingCart_WebSocket/product/product.do" name="form1" enctype="multipart/form-data">
+<table class="wwFormTable">
+
+	<tr>
+		<td>商品名稱:</td>
+		<td><input type="text" name="prod_name" class="input" value=""/><span class="message"></span></td>
+	</tr>
+	<tr>
+		<td>商品介紹:</td>
+		<td><textarea name="prod_introduce" class="input" style="height:100px"></textarea><span class="message"></span></td>
+	</tr>
+	
+	<tr>
+		<td>商品價格:</td>
+		<td><input type="text" name="prod_price" class="input" value=""/><span class="message"></span></td>
+	</tr>
+	<tr>
+		<td>商品庫存:</td>
+		<td><input type="text" name="prod_stock" class="input" value=""/><span class="message" ></span></td>
+	</tr>
+	
+	
+	<tr>
+		<td>商品類別:</td>
+		<td><select size="1" name="category_no" class="input">
+			
+				<option value="10"  >單車
+			
+				<option value="20"  >單車裝備
+			
+				<option value="30"  >騎士裝備
+			
+		</select></td>
+	</tr>
+	<tr>
+		<td>商品狀態:</td>
+        <td><input type="radio" name="prod_status" value="1" checked>上架
+            <input type="radio" name="prod_status" value="0">下架
+	</tr> 
+	<tr>
+		<td>商品圖片:</td>
+		<td><input type="file"  class="input" name="prod_pic" id="prod_pic" onchange="previewImage()"/><span  class="message"></span></td>
+	</tr>
+	<tr>
+		<td>圖片預覽:</td>
+		<td><img id="blob_holder" class="img2" src="/TibameF3_MVC_ShoppingCart_WebSocket/images/noImage.png"/></td>
+	</tr>
+</table>
+<br>
+<input type="hidden" name="action" value="insert">
+
+<input type="submit" value="送出新增" class="btn1">
+<button type="button" onclick="take()" id="mbutton" class="btn2">導入商品資料</button></FORM>
+
+
+<script type="text/javascript">
+    function previewImage() {
+        var prod_pic = document.getElementById("prod_pic");
+        
+        // 確定選取了一個二進位檔案，而非其他格式。
+        if (prod_pic.files.length != 0 && prod_pic.files[0].type.match(/image.*/)) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var theImg = document.getElementById("blob_holder");
+                theImg.src = e.target.result;
+            };
+            reader.onerror = function (e) {
+                alert("例外狀況，無法讀取二進位檔");
+            };
+            // 讀取二進位檔案。
+            reader.readAsDataURL(prod_pic.files[0]);
+        }
+        else {
+            alert("請選取一個二進位檔");
+        }
+    }
+    
+function take(){
+    	$("input[name='prod_name']").val("風火輪單車");
+        $("textarea[name='prod_introduce']").val("擁有一台風火輪單車，能為你實現天馬行空的騎乘想像；讓你不再為惡劣天氣擔憂，更能規劃不同的冒險旅程 ─ 它將陪你踏遍城市聚會、市集或露天咖啡。");
+    	$("input[name='prod_price']").val("35000");
+    	$("input[name='prod_stock']").val("100");
+}
+</script>
+
+</body>
+</html>

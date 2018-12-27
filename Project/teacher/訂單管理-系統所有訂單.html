@@ -1,0 +1,82 @@
+<html>
+<head>
+<title>訂單管理-系統所有訂單 - listAllOrders.jsp</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel='stylesheet' href="/TibameF3_MVC_ShoppingCart_WebSocket/resources/bootstrap/css/bootstrap.css"/>
+<link rel="stylesheet" href="/TibameF3_MVC_ShoppingCart_WebSocket/resources/font-awesome-4.5.0/css/font-awesome.css">
+<link rel="stylesheet" href="/TibameF3_MVC_ShoppingCart_WebSocket/resources/css/listOrders.css" />
+</head>
+<body>
+<br>
+<table style="width:65%; text-align:left;">
+	<tr><td>
+	   <a href="/TibameF3_MVC_ShoppingCart_WebSocket/Backend-index.jsp"><img src="/TibameF3_MVC_ShoppingCart_WebSocket/images/Eshop.jpg"></a>
+	   <h3><i class="fa fa-cog fa-spin fa-2x"></i>系統所有訂單</h3>
+    </td></tr>
+	<tr><td><h4>listAllOrders.jsp</h4></td></tr>
+</table>
+
+<table class="order_Table">
+	<tr>
+		<th>訂單日期</th>
+		<th>訂單編號</th>
+		<th>會員姓名</th>
+		<th>訂單狀態</th>
+		<th>收件人姓名</th>
+		<th>收件人電話</th>
+		<th>郵遞區號</th>
+		<th>收件地址</th>
+		<th>總金額</th>
+		<th>
+		   <a class="btn btn-success btn-sm" href="#" style="color: #ffffff">
+           <i class="fa fa-cog fa-spin fa-2x"></i></a> <b>檢視明細</b>
+        </th>
+	</tr>
+	
+		<tr>
+			<td>2018-12-27</td>
+			<td>20181227-000002</td>
+			<td>湯姆貓</td>
+			<td>未出貨</td>
+			<td>湯姆貓</td>
+			<td>0988888888</td>
+			<td>110</td>
+			<td width="100">台北市信義區市府路1號</td>
+			<td>860800</td>
+			<td>
+			    <FORM method="post" action="/TibameF3_MVC_ShoppingCart_WebSocket/ord/ord.do" id="myForm" name="myForm">
+                    <button class="btn btn-success"><i class="fa fa-search-plus lg"></i> 訂單明細</button>
+                    <input type="hidden" name="ord_no" value="20181227-000002">
+                    <input type="hidden" name="requestURL"	value="/backend/order/listAllOrders.jsp"><!--送出本網頁的路徑給Controller(OrdServlet.java)-->
+		            <input type="hidden" name="action" value="listDetails_ByOrdno">
+	            </FORM>
+			</td>
+		</tr>
+	
+		<tr>
+			<td>2018-12-27</td>
+			<td>20181227-000001</td>
+			<td>湯姆貓</td>
+			<td>未出貨</td>
+			<td>湯姆貓</td>
+			<td>0988888888</td>
+			<td>320</td>
+			<td width="100">桃園市中壢區福德一路177巷60弄2號</td>
+			<td>60000</td>
+			<td>
+			    <FORM method="post" action="/TibameF3_MVC_ShoppingCart_WebSocket/ord/ord.do" id="myForm" name="myForm">
+                    <button class="btn btn-success"><i class="fa fa-search-plus lg"></i> 訂單明細</button>
+                    <input type="hidden" name="ord_no" value="20181227-000001">
+                    <input type="hidden" name="requestURL"	value="/backend/order/listAllOrders.jsp"><!--送出本網頁的路徑給Controller(OrdServlet.java)-->
+		            <input type="hidden" name="action" value="listDetails_ByOrdno">
+	            </FORM>
+			</td>
+		</tr>
+	
+</table>
+<br><br>
+
+
+
+</body>
+</html>

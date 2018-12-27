@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>所有產品資料- listAllProduct.jsp</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/TibameF3_MVC_ShoppingCart_WebSocket/resources/sweetalert/css/sweetalert.css" />
+<script src="/TibameF3_MVC_ShoppingCart_WebSocket/resources/js/sweetalert.min.js"></script>
+<link rel="stylesheet" href="/TibameF3_MVC_ShoppingCart_WebSocket/resources/css/listAllProduct.css" />
+<link rel="stylesheet" href="/TibameF3_MVC_ShoppingCart_WebSocket/resources/css/serverPush.css" />
+</head>
+<body onload="connect();" onunload="disconnect();">
+<br>
+
+<table class="wwFormTable">
+	<tr><td><h3>所有產品資料- listAllProduct.jsp</h3>
+	        <a href="/TibameF3_MVC_ShoppingCart_WebSocket/Backend-index.jsp"><img src="/TibameF3_MVC_ShoppingCart_WebSocket/images/bag.png"></a>
+	    </td><td> 
+	        <h3 id="statusOutput"  class="statusOutput2"></h3>
+	        <input type="submit" id="sendMessage" class="serverPush-button" value="新品上市          即時發怖" onclick="sendMessage();"/>
+	    </td></tr>
+</table><br>
+
+<table class="wwFormTable">
+	<tr>
+		<th>商品編號</th>
+		<th>商品分類</th>
+		<th>商品名稱</th>
+		<th>商品價格</th>
+		<th>商品詳情</th>
+		<th>商品庫存</th>
+		<th>商品狀態</th>
+		<th>商品圖片(BLOB)</th>
+	</tr>
+	
+		<tr>
+			<td>1001</td>
+			<td>
+			    
+                    
+	                    單車
+                    
+                
+                    
+                
+                    
+                
+			</td>
+			<td>Alias單車</td>
+			<td>30000</td>
+			<td><textarea style="height:100px">Alias Sport是結合性能與多功能的完美組合。FACT 10r碳纖維車架，女性專屬Alias車架幾何，妳可以隨時改變設定，作為公路長途訓練使用或進行鐵人三項競賽。</textarea></td>
+			<td>100</td>
+			<td>上架</td>
+		    <td><img src="/TibameF3_MVC_ShoppingCart_WebSocket/reader/DBGifReader?product_no=1001" class="img-thumbnail2"></td>
+		</tr>
+	
+		<tr>
+			<td>1002</td>
+			<td>
+			    
+                    
+	                    單車
+                    
+                
+                    
+                
+                    
+                
+			</td>
+			<td>Diverge單車</td>
+			<td>30000</td>
+			<td><textarea style="height:100px">Diverge Comp是部探險速度機器，獨特的BB高度與前叉角度，讓Diverge在任何地形都能自信、平順的通過。</textarea></td>
+			<td>100</td>
+			<td>上架</td>
+		    <td><img src="/TibameF3_MVC_ShoppingCart_WebSocket/reader/DBGifReader?product_no=1002" class="img-thumbnail2"></td>
+		</tr>
+	
+		<tr>
+			<td>1003</td>
+			<td>
+			    
+                    
+                
+                    
+	                    單車裝備
+                    
+                
+                    
+                
+			</td>
+			<td>Power Pro座墊</td>
+			<td>2000</td>
+			<td><textarea style="height:100px">超輕量化Power Pro座墊，具良好剛性，FACT碳纖維強化底座與耐用的鈦合金座弓，維持舒適坐姿。</textarea></td>
+			<td>100</td>
+			<td>上架</td>
+		    <td><img src="/TibameF3_MVC_ShoppingCart_WebSocket/reader/DBGifReader?product_no=1003" class="img-thumbnail2"></td>
+		</tr>
+	
+		<tr>
+			<td>1004</td>
+			<td>
+			    
+                    
+                
+                    
+	                    單車裝備
+                    
+                
+                    
+                
+			</td>
+			<td>Roval CLX64輪組</td>
+			<td>2000</td>
+			<td><textarea style="height:100px">Roval CLX64輪組與S-Works Turbo輪胎是在我們的Win Tunnel風洞實驗室中整合研發設計，孕育出結合空氣力學與低滾動阻力的最快速的公路競賽輪組/輪胎系統。</textarea></td>
+			<td>100</td>
+			<td>上架</td>
+		    <td><img src="/TibameF3_MVC_ShoppingCart_WebSocket/reader/DBGifReader?product_no=1004" class="img-thumbnail2"></td>
+		</tr>
+	
+		<tr>
+			<td>1005</td>
+			<td>
+			    
+                    
+                
+                    
+                
+                    
+	                    騎士裝備
+                    
+                
+			</td>
+			<td>S-Works車鞋</td>
+			<td>1000</td>
+			<td><textarea style="height:100px">頂級S-Works系列重新定義一雙好的車鞋該有什麼效能。我們使用最輕、最佳剛性並符合Body Geometry人體工學設計。提供Pro Peloton選手或追求巔峰的騎士前所未有的舒傳導。</textarea></td>
+			<td>100</td>
+			<td>上架</td>
+		    <td><img src="/TibameF3_MVC_ShoppingCart_WebSocket/reader/DBGifReader?product_no=1005" class="img-thumbnail2"></td>
+		</tr>
+	
+		<tr>
+			<td>1006</td>
+			<td>
+			    
+                    
+                
+                    
+                
+                    
+	                    騎士裝備
+                    
+                
+			</td>
+			<td>後背包</td>
+			<td>1000</td>
+			<td><textarea style="height:100px">我們的後背包也許不是所向無敵，但我們相信，它會超越所有『騎士』對後背包的需求！最外部使用較厚的尼龍防水材質，上下班通勤使用也不用擔心</textarea></td>
+			<td>100</td>
+			<td>上架</td>
+		    <td><img src="/TibameF3_MVC_ShoppingCart_WebSocket/reader/DBGifReader?product_no=1006" class="img-thumbnail2"></td>
+		</tr>
+	
+		<tr>
+			<td>1007</td>
+			<td>
+			    
+                    
+	                    單車
+                    
+                
+                    
+                
+                    
+                
+			</td>
+			<td>風火輪單車</td>
+			<td>35000</td>
+			<td><textarea style="height:100px">擁有一台風火輪單車，能為你實現天馬行空的騎乘想像；讓你不再為惡劣天氣擔憂，更能規劃不同的冒險旅程 ─ 它將陪你踏遍城市聚會、市集或露天咖啡。</textarea></td>
+			<td>100</td>
+			<td>上架</td>
+		    <td><img src="/TibameF3_MVC_ShoppingCart_WebSocket/reader/DBGifReader?product_no=1007" class="img-thumbnail2"></td>
+		</tr>
+	
+		<tr>
+			<td>1008</td>
+			<td>
+			    
+                    
+	                    單車
+                    
+                
+                    
+                
+                    
+                
+			</td>
+			<td>風火輪單車2</td>
+			<td>35000</td>
+			<td><textarea style="height:100px">擁有一台風火輪單車，能為你實現天馬行空的騎乘想像；讓你不再為惡劣天氣擔憂，更能規劃不同的冒險旅程 ─ 它將陪你踏遍城市聚會、市集或露天咖啡。</textarea></td>
+			<td>100</td>
+			<td>上架</td>
+		    <td><img src="/TibameF3_MVC_ShoppingCart_WebSocket/reader/DBGifReader?product_no=1008" class="img-thumbnail2"></td>
+		</tr>
+	
+		<tr>
+			<td>1009</td>
+			<td>
+			    
+                    
+                
+                    
+                
+                    
+	                    騎士裝備
+                    
+                
+			</td>
+			<td>豚鼠</td>
+			<td>0</td>
+			<td><textarea style="height:100px">小小隻</textarea></td>
+			<td>1</td>
+			<td>上架</td>
+		    <td><img src="/TibameF3_MVC_ShoppingCart_WebSocket/reader/DBGifReader?product_no=1009" class="img-thumbnail2"></td>
+		</tr>
+	
+		<tr>
+			<td>1010</td>
+			<td>
+			    
+                    
+	                    單車
+                    
+                
+                    
+                
+                    
+                
+			</td>
+			<td>IpadPro2018</td>
+			<td>26900</td>
+			<td><textarea style="height:100px">僅此一份</textarea></td>
+			<td>1</td>
+			<td>上架</td>
+		    <td><img src="/TibameF3_MVC_ShoppingCart_WebSocket/reader/DBGifReader?product_no=1010" class="img-thumbnail2"></td>
+		</tr>
+	
+		<tr>
+			<td>1011</td>
+			<td>
+			    
+                    
+	                    單車
+                    
+                
+                    
+                
+                    
+                
+			</td>
+			<td>風火輪單車3</td>
+			<td>35000</td>
+			<td><textarea style="height:100px">擁有一台風火輪單車，能為你實現天馬行空的騎乘想像；讓你不再為惡劣天氣擔憂，更能規劃不同的冒險旅程 ─ 它將陪你踏遍城市聚會、市集或露天咖啡。</textarea></td>
+			<td>100</td>
+			<td>上架</td>
+		    <td><img src="/TibameF3_MVC_ShoppingCart_WebSocket/reader/DBGifReader?product_no=1011" class="img-thumbnail2"></td>
+		</tr>
+	
+		<tr>
+			<td>1012</td>
+			<td>
+			    
+                    
+	                    單車
+                    
+                
+                    
+                
+                    
+                
+			</td>
+			<td>風火輪單車4</td>
+			<td>35000</td>
+			<td><textarea style="height:100px">擁有一台風火輪單車，能為你實現天馬行空的騎乘想像；讓你不再為惡劣天氣擔憂，更能規劃不同的冒險旅程 ─ 它將陪你踏遍城市聚會、市集或露天咖啡。</textarea></td>
+			<td>100</td>
+			<td>上架</td>
+		    <td><img src="/TibameF3_MVC_ShoppingCart_WebSocket/reader/DBGifReader?product_no=1012" class="img-thumbnail2"></td>
+		</tr>
+	
+</table>
+
+<script>
+    
+    var MyPoint = "/MyEchoServer";
+    var host = window.location.host;
+    var path = window.location.pathname;
+    var webCtx = path.substring(0, path.indexOf('/', 1));
+    var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
+    
+    var statusOutput  = document.getElementById("statusOutput");
+    var statusPublish = document.getElementById("statusPublish");
+	var webSocket;
+	
+	function connect() {
+		// 建立 websocket 物件
+		webSocket = new WebSocket(endPointURL);
+		
+		webSocket.onopen = function(event) {
+			updateStatus("WebSocket 成功連線");
+		};
+
+		webSocket.onmessage = function(event) {
+			updateStatus(event.data);
+			statusOutput.style.color = 'red';
+		};
+
+		webSocket.onclose = function(event) {
+			updateStatus("WebSocket 已離線");
+		};
+	}
+	
+	
+	function disconnect () {
+		webSocket.close();
+	}
+
+	function updateStatus(newStatus) {
+		statusOutput.innerHTML = newStatus;
+	}
+	
+	function updatePublish(newPublish) {
+		statusPublish.innerHTML = newPublish;
+	}
+	
+	function sendMessage() {
+	    var message = "成功~即時推播新品資訊~給所有使用者 !";
+	    webSocket.send(message);
+	    return swal({   title: "新品即時推播中",   text: "請耐心等候，謝謝！",   imageUrl: "/TibameF3_MVC_ShoppingCart_WebSocket/images/loading.gif" , timer: 2000,  showConfirmButton: false});
+	}
+    
+</script>
+
+</body>
+</html>

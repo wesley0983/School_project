@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>MVC購物車系統 - EShop.jsp</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel='stylesheet' href="/TibameF3_MVC_ShoppingCart_WebSocket/resources/bootstrap/css/bootstrap.css"/>
+<link rel="stylesheet" href="/TibameF3_MVC_ShoppingCart_WebSocket/resources/sweetalert/css/sweetalert2.css"/>
+<link rel="stylesheet" href="/TibameF3_MVC_ShoppingCart_WebSocket/resources/font-awesome-4.5.0/css/font-awesome.css">
+<link rel="stylesheet" href="/TibameF3_MVC_ShoppingCart_WebSocket/resources/css/ShoppingCart.css"/>
+<link rel="stylesheet" href="/TibameF3_MVC_ShoppingCart_WebSocket/resources/css/serverPush.css" />
+<script src="/TibameF3_MVC_ShoppingCart_WebSocket/resources/js/jquery.min.js"></script>
+<script src="/TibameF3_MVC_ShoppingCart_WebSocket/resources/js/sweetalert2.min.js"></script>
+</head>
+<body onload="connect();" onunload="disconnect();">
+
+<div class="container" style="width: 75%">
+
+    <table class="wwFormTable">
+	    <tr><td><h3>MVC購物車系統 - Eshop.jsp</h3>
+		        <h4>登入者: <a href="/TibameF3_MVC_ShoppingCart_WebSocket/backend/order/getMemberOrders.jsp"></a> 在線上</h4>
+	                           已購:<span class="kinds"><i class="fa fa-cog fa-spin fa-2x" style="color: red"></i>1樣</span>
+                    <span class="pcs"><i class="fa fa-cog fa-spin fa-2x" style="color: blue"></i>1件商品</span><br>
+	      
+	            <a href="/TibameF3_MVC_ShoppingCart_WebSocket/product/Cart.jsp">
+	               <img src="/TibameF3_MVC_ShoppingCart_WebSocket/images/cart2.png"><br>
+	               <img class="viewCart" src="/TibameF3_MVC_ShoppingCart_WebSocket/images/viewCart2.gif"><br>
+	            </a>
+	    </td><td>
+	       <h3 class="statusOutput1" id="statusOutput"></h3>
+	    </td></tr>
+    </table>
+
+	
+	  <div class="part-sec"><br><br>
+		  <div class="product-default">
+	            <b>單車</b>
+		        <img src="/TibameF3_MVC_ShoppingCart_WebSocket/reader/DBGifReader?product_no=1001">
+			    <div class="clear"><b>Alias單車</b></div>
+			    <div class="clear">$-30000</div>
+		        <div class="clear">  
+		           <form method="post"	action="/TibameF3_MVC_ShoppingCart_WebSocket/shopping/shopping.do" name="form1" id="form1001">
+				         <input type="hidden" name="product_no" value="1001">
+                         <input type="hidden" name="prod_name" value="Alias單車">
+                         <input type="hidden" name="prod_price" value="30000">
+				         <input type="hidden" name="prod_category" value="10">
+                         <input type="hidden" name="quantity" value="1">
+				         <input type="hidden" name="action" value="ADD">
+                         <input type="button" class="button orange" value="加入購物車" onclick="calert(1001)">
+			       </form>
+		        </div>
+		  </div>
+	   </div>	
+	
+	  <div class="part-sec"><br><br>
+		  <div class="product-default">
+	            <b>單車</b>
+		        <img src="/TibameF3_MVC_ShoppingCart_WebSocket/reader/DBGifReader?product_no=1002">
+			    <div class="clear"><b>Diverge單車</b></div>
+			    <div class="clear">$-30000</div>
+		        <div class="clear">  
+		           <form method="post"	action="/TibameF3_MVC_ShoppingCart_WebSocket/shopping/shopping.do" name="form1" id="form1002">
+				         <input type="hidden" name="product_no" value="1002">
+                         <input type="hidden" name="prod_name" value="Diverge單車">
+                         <input type="hidden" name="prod_price" value="30000">
+				         <input type="hidden" name="prod_category" value="10">
+                         <input type="hidden" name="quantity" value="1">
+				         <input type="hidden" name="action" value="ADD">
+                         <input type="button" class="button orange" value="加入購物車" onclick="calert(1002)">
+			       </form>
+		        </div>
+		  </div>
+	   </div>	
+	
+	  <div class="part-sec"><br><br>
+		  <div class="product-default">
+	            <b>單車裝備</b>
+		        <img src="/TibameF3_MVC_ShoppingCart_WebSocket/reader/DBGifReader?product_no=1003">
+			    <div class="clear"><b>Power Pro座墊</b></div>
+			    <div class="clear">$-2000</div>
+		        <div class="clear">  
+		           <form method="post"	action="/TibameF3_MVC_ShoppingCart_WebSocket/shopping/shopping.do" name="form1" id="form1003">
+				         <input type="hidden" name="product_no" value="1003">
+                         <input type="hidden" name="prod_name" value="Power Pro座墊">
+                         <input type="hidden" name="prod_price" value="2000">
+				         <input type="hidden" name="prod_category" value="20">
+                         <input type="hidden" name="quantity" value="1">
+				         <input type="hidden" name="action" value="ADD">
+                         <input type="button" class="button orange" value="加入購物車" onclick="calert(1003)">
+			       </form>
+		        </div>
+		  </div>
+	   </div>	
+	
+	  <div class="part-sec"><br><br>
+		  <div class="product-default">
+	            <b>單車裝備</b>
+		        <img src="/TibameF3_MVC_ShoppingCart_WebSocket/reader/DBGifReader?product_no=1004">
+			    <div class="clear"><b>Roval CLX64輪組</b></div>
+			    <div class="clear">$-2000</div>
+		        <div class="clear">  
+		           <form method="post"	action="/TibameF3_MVC_ShoppingCart_WebSocket/shopping/shopping.do" name="form1" id="form1004">
+				         <input type="hidden" name="product_no" value="1004">
+                         <input type="hidden" name="prod_name" value="Roval CLX64輪組">
+                         <input type="hidden" name="prod_price" value="2000">
+				         <input type="hidden" name="prod_category" value="20">
+                         <input type="hidden" name="quantity" value="1">
+				         <input type="hidden" name="action" value="ADD">
+                         <input type="button" class="button orange" value="加入購物車" onclick="calert(1004)">
+			       </form>
+		        </div>
+		  </div>
+	   </div>	
+	
+	  <div class="part-sec"><br><br>
+		  <div class="product-default">
+	            <b>騎士裝備</b>
+		        <img src="/TibameF3_MVC_ShoppingCart_WebSocket/reader/DBGifReader?product_no=1005">
+			    <div class="clear"><b>S-Works車鞋</b></div>
+			    <div class="clear">$-1000</div>
+		        <div class="clear">  
+		           <form method="post"	action="/TibameF3_MVC_ShoppingCart_WebSocket/shopping/shopping.do" name="form1" id="form1005">
+				         <input type="hidden" name="product_no" value="1005">
+                         <input type="hidden" name="prod_name" value="S-Works車鞋">
+                         <input type="hidden" name="prod_price" value="1000">
+				         <input type="hidden" name="prod_category" value="30">
+                         <input type="hidden" name="quantity" value="1">
+				         <input type="hidden" name="action" value="ADD">
+                         <input type="button" class="button orange" value="加入購物車" onclick="calert(1005)">
+			       </form>
+		        </div>
+		  </div>
+	   </div>	
+	
+	  <div class="part-sec"><br><br>
+		  <div class="product-default">
+	            <b>騎士裝備</b>
+		        <img src="/TibameF3_MVC_ShoppingCart_WebSocket/reader/DBGifReader?product_no=1006">
+			    <div class="clear"><b>後背包</b></div>
+			    <div class="clear">$-1000</div>
+		        <div class="clear">  
+		           <form method="post"	action="/TibameF3_MVC_ShoppingCart_WebSocket/shopping/shopping.do" name="form1" id="form1006">
+				         <input type="hidden" name="product_no" value="1006">
+                         <input type="hidden" name="prod_name" value="後背包">
+                         <input type="hidden" name="prod_price" value="1000">
+				         <input type="hidden" name="prod_category" value="30">
+                         <input type="hidden" name="quantity" value="1">
+				         <input type="hidden" name="action" value="ADD">
+                         <input type="button" class="button orange" value="加入購物車" onclick="calert(1006)">
+			       </form>
+		        </div>
+		  </div>
+	   </div>	
+	
+</div>
+
+	
+<script>
+   var formId = '';
+   function calert(n) {
+	  formId = 'form'+n;
+	  swal({   title: "已成功加入購物車",   type:"success",   timer: 1500,   showConfirmButton: false });
+	  setTimeout("submitForm()", 1600); 
+   }
+   function submitForm() { 
+	 document.getElementById(formId).submit()
+   }
+   
+   function getReload(){
+	   
+		swal({
+			html: $("<div>")     .addClass('serverPush-alert')     .text('請注意，有新品，上市囉!'),
+			imageUrl: '/TibameF3_MVC_ShoppingCart_WebSocket/images/sale.jpg',
+			background: 'url(/TibameF3_MVC_ShoppingCart_WebSocket/images/symphony.png)',
+			showCancelButton : true,
+			confirmButtonColor : '#3085d6',
+			cancelButtonColor : '#d33',
+			confirmButtonText : 'Yes, 馬上搶購去!',
+			cancelButtonText : 'No, 等會再買!',
+			confirmButtonClass : 'confirm-class',
+			cancelButtonClass : 'cancel-class',
+			closeOnConfirm : false,
+			closeOnCancel : false
+		},
+				function(isConfirm) {
+					if (isConfirm) {
+						self.location.reload();
+					} else {
+						updateStatus("WebSocket 成功連線 ~新品錯過可惜~");
+						swal({
+							  title: "~錯過可惜~",   
+							  imageUrl: "/TibameF3_MVC_ShoppingCart_WebSocket/images/omg.gif",
+							  background: 'url(/TibameF3_MVC_ShoppingCart_WebSocket/images/symphony.png)',
+							  html:     '<b>如果後悔，按以下連結</b>' + '<br><a href="/TibameF3_MVC_ShoppingCart_WebSocket/product/EShop.jsp">電 子 商 店 EShop</a>' + '<br>仍可搶購新品~',
+							  width: 300,
+							  padding: 20, 
+							  showConfirmButton: true,
+							  confirmButtonText : 'No, 仍是等會再買!',
+							 }
+						    );
+					}
+				});
+		
+   }
+	   
+</script>
+
+<script>
+    
+    var MyPoint = "/MyEchoServer";
+    var host = window.location.host;
+    var path = window.location.pathname;
+    var webCtx = path.substring(0, path.indexOf('/', 1));
+    var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
+    
+	var statusOutput = document.getElementById("statusOutput");
+	var webSocket;
+	
+	function connect() {
+		// 建立 websocket 物件
+		webSocket = new WebSocket(endPointURL);
+		
+		webSocket.onopen = function(event) {
+			updateStatus("WebSocket 成功連線");
+		};
+
+		webSocket.onmessage = function(event) {
+			updateStatus("新品推播中...");
+ 			getReload();
+		};
+
+		webSocket.onclose = function(event) {
+			updateStatus("WebSocket 已離線");
+		};
+	}
+	
+	
+	function disconnect () {
+		webSocket.close();
+	}
+
+	function updateStatus(newStatus) {
+		statusOutput.innerHTML = newStatus;
+	}
+    
+</script>
+
+</body>
+</html>
