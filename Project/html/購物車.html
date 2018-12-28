@@ -24,7 +24,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-	<title>訂單詳情</title>
+	<title>購物車</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 	<!--[if lt IE 9]>
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -246,20 +246,41 @@
 																<div class="container-fluid warpwidth">
 																	<div class="row">
 																		<div>
-																			<h2 class="fontsize">訂單詳情</h2>
+																			<h2 class="fontsize">?件商品</h2>
 																		</div>
-										
+																		<!-- 關鍵字搜尋 -->
+																			<div class="container">
+																				<div class="row">
+																					<!-- 搜尋表單 -->
+																						<div class="col-xs-12 col-sm-4">
+																							<div class="row">
+																								
+																								<div>
+																				
+																								</div>
+																								<div class="input-group">
+																									<input type="text" class="form-control" placeholder="請輸入關鍵字">
+																									<span class="input-group-btn">
+																										<button class="btn btn-info" type="button">搜尋</button>
+																									</span>
+																								</div>
+																								
+																							</div>
+																						</div>
+																					<div class="col-xs-12 col-sm-4"></div>
+																					<div class="col-xs-12 col-sm-4"></div>
+																				</div>
+																			</div>
 																		
 																				<!-- 所有商品 -->
 																				<table class="table table-hover ">
 																					<thead>
 																						<tr class="tablebgc">
-																							
+																							<th class="checkboxsize"></th>
 																							<th class="thwidth">商品名稱圖片</th>
 																							<th>商品單價</th>
 																							<th>數量</th>
 																							<th>總計</th>
-																							<th>狀態</th>
 																							<th>操作</th>
 																						</tr>
 																					</thead>
@@ -267,6 +288,10 @@
 																						<jsp:useBean id="productClassSvc" scope="page" class="com.productclass.model.ProductClassService" />
 																						<c:forEach var="proVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 																							<tr>
+																								<td>
+																								<!-- 核取方塊大小 -->
+																									<input type="checkbox" name="">
+																								</td>
 																								<!-- 商品圖片名稱 -->
 																								<td style="text-align: left;">
 																									<div style="height: 80px">
@@ -286,16 +311,14 @@
 																								<td>
 																									${}
 																								</td>
-																								<!-- 訂單狀態 -->
-																								<td>
-																									${}
-																								</td>
 																								<!-- 下拉式按鈕 -->
 																								<td>
-																									<input type="submit" value="查看">
+																									<input type="hidden" name="pro_no" value="${proVO.pro_no}">
+																									<input type="submit" value="刪除">
 																								</td>
 																							</tr>
 																						</c:forEach>
+
 																					</tbody>
 																				</table>
 																				<%@ include file="page/page2_ByCompositeQuery.file" %>
@@ -304,9 +327,38 @@
 															</div>
 														</div>
 													</FORM>			
-										
+												
+												
 											</div>
 										</div>
+
+										<div class="container-fluid">
+											<div class="row">
+													<!-- 表單 -->
+													<FORM >
+														<div class="container-fluid warp">
+															<div class="row">
+																<!-- 容器區 -->
+																<div class="container-fluid warpwidth">
+																	<div class="row">
+																		<div>
+																			<h2 class="fontsize">?件商品</h2>
+																		</div>
+																		<!-- 關鍵字搜尋 -->
+																			
+																		<div>
+																			<input type="submit" value="去買單">
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</FORM>			
+												
+												
+											</div>
+										</div>
+
 
 			</div>
 		</div>
