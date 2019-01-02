@@ -1,3 +1,6 @@
+<%@page import="com.orddetails.model.OrddetailsVO"%>
+<%@page import="com.orddetails.model.OrddetailsService"%>
+<%@page import="com.ord.model.OrdService"%>
 <%@page import="com.product.model.*"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -6,17 +9,21 @@
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <%
-	ProductService proSvc = new ProductService();
-	List<ProductVO> list = new ArrayList<ProductVO>();
-	if ("findBy".equals(request.getAttribute("findBy"))) {
-		list = (List<ProductVO>) request.getAttribute("pro_ByCompositeQuery");
-	} else {
-		list = proSvc.getAll();
-	}
-    pageContext.setAttribute("list",list);
+	OrdService ordSvc = new OrdService();
+	OrddetailsService orddetailsSvc = new OrddetailsService();
+	List<OrddetailsVO> list = orddetailsSvc.getOneOrd(ordSvc.getOneOrd(request.getAttribute("ord_no").toString()).getOrd_no());
+	pageContext.setAttribute("list",list);
+	
+// 	List<ProductVO> list = new ArrayList<ProductVO>();
+// 	if ("findBy".equals(request.getAttribute("findBy"))) {
+// 		list = (List<ProductVO>) request.getAttribute("pro_ByCompositeQuery");
+// 	} else {
+// 		list = proSvc.getAll();
+// 	}
+//     pageContext.setAttribute("list",list);
 
 %>
-<jsp:useBean id="proclassSvc" scope="page" class="com.productclass.model.ProductClassService" />
+<jsp:useBean id="proSvc" scope="page" class="com.product.model.ProductService" />
 <!DOCTYPE html> 
 <html lang="">
 
@@ -264,31 +271,32 @@
 																						</tr>
 																					</thead>
 																					<tbody>
-																						<jsp:useBean id="productClassSvc" scope="page" class="com.productclass.model.ProductClassService" />
-																						<c:forEach var="proVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+																						
+																						<c:forEach var="orddetails" items="${list}">
 																							<tr>
 																								<!-- 商品圖片名稱 -->
 																								<td style="text-align: left;">
 																									<div style="height: 80px">
-																										<img class="imgsize" src="<%=request.getContextPath()%>/pro/proImg.do?pro_no=${proVO.pro_no}"> ${proVO.pro_name}
+																										<img class="imgsize" src="<%=request.getContextPath()%>/pro/proImg.do?pro_no=${proSvc.getOneProduct(orddetails.pro_no).pro_no}"> 
+																										${proSvc.getOneProduct(orddetails.pro_no).pro_name}
 																									</div>
 																								</td>
 																								
 																								<!-- 商品單價 -->
 																								<td>
-																									${proVO.pro_bonus}
+																									${proSvc.getOneProduct(orddetails.pro_no).pro_bonus}
 																								</td>
 																								<!-- 商品數量 -->
 																								<td>
-																									${}
+																									${orddetails.pro_count}
 																								</td>
 																								<!-- 商品總計 -->
 																								<td>
-																									${}
+																									${orddetails.pro_count * proSvc.getOneProduct(orddetails.pro_no).pro_bonus}
 																								</td>
 																								<!-- 訂單狀態 -->
 																								<td>
-																									${}
+																									${proSvc.getOneProduct(orddetails.pro_no).pro_shelve}
 																								</td>
 																								<!-- 下拉式按鈕 -->
 																								<td>
@@ -298,7 +306,7 @@
 																						</c:forEach>
 																					</tbody>
 																				</table>
-																				<%@ include file="page/page2_ByCompositeQuery.file" %>
+																				
 																	</div>
 																</div>
 															</div>
