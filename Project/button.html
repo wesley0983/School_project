@@ -103,6 +103,7 @@
                     $(this).prop("disabled", true); //當輸入框內數值為0時，使“-”減號處於不可用狀態。
                 };
                 var danjia = $(this).siblings(".danjia").text(); //獲取單價
+                console.log(danjia);
                 var xiaoji = danjia * num; //用單價乘以數量計算得到單個小計的值
                 $(this).siblings(".xiaoji").text(xiaoji); //把得到的小計值放入數量框中顯示
                 totalPrice();//調用“總價”方法，使每點擊減號，數量變化時，總價跟着變化
