@@ -13,15 +13,147 @@
 	</head>
 	<body>
 		
-		<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="cc1" aria-expanded="false" aria-controls="#cc1">
-			開啟
-		</button>
-		<div class="collapse" id="cc1">
-			內容
-		</div>
+		<div id="bigbox">
+        <div id="container" style="height:220px;width:620px;border:1px solid gray;margin:0 auto;">
+            <p>
+                <input type="checkbox" name="quanxuan" value="" class="box" />
+                <label>數量：</label>
+                <input type="button" name="name" value="-" class="reduce" />
+                <input type="text" name="name" value="2" class="textNum" />
+                <input type="button" name="name" value="+" class="add" />
+                <label>單價：</label>
+                <span class="danjia">2</span><strong>￥ |</strong>
+                <label>小計：</label>
+                <span class="xiaoji">4</span><strong>￥</strong>
+                <input type="button" name="name" value="刪除" class="deleteOne" />
+            </p>
+            <p>
+                <input type="checkbox" name="quanxuan" value="" class="box" />
+                <label>數量：</label>
+                <input type="button" name="name" value="-" class="reduce" />
+                <input type="text" name="name" value="2" class="textNum" />
+                <input type="button" name="name" value="+" class="add" />
+                <label>單價：</label>
+                <span class="danjia">2</span><strong>￥ |</strong>
+                <label>小計：</label>
+                <span class="xiaoji">4</span><strong>￥</strong>
+                <input type="button" name="name" value="刪除" class="deleteOne" />
+            </p>
+            <p>
+                <input type="checkbox" name="quanxuan" value="" class="box" />
+                <label>數量：</label>
+                <input type="button" name="name" value="-" class="reduce" />
+                <input type="text" name="name" value="2" class="textNum" />
+                <input type="button" name="name" value="+" class="add" />
+                <label>單價：</label>
+                <span class="danjia">2</span><strong>￥ |</strong>
+                <label>小計：</label>
+                <span class="xiaoji">4</span><strong>￥</strong>
+                <input type="button" name="name" value="刪除" class="deleteOne" />
+            </p>
+            <p>
+                <input type="checkbox" name="name" value="" class="box" />
+                <label>數量：</label>
+                <input type="button" name="name" value="-" class="reduce" />
+                <input type="text" name="name" value="2" class="textNum" />
+                <input type="button" name="name" value="+" class="add" />
+                <label>單價：</label>
+                <span class="danjia">2</span><strong>￥ |</strong>
+                <label>小計：</label>
+                <span class="xiaoji">4</span><strong>￥</strong>
+                <input type="button" name="name" value="刪除" class="deleteOne" />
+            </p>
+            <hr />
+            <p style="height:30px;width:470px;margin-left:60px;margin:0 auto;">
+                <input type="button" name="name" value="全選" id="allSelect" />
+                <input type="button" name="name" value="取消全選" id="notSelect" />
+                <input type="button" name="name" value="批量刪除" id="deleteAll" />
+                <input type="button" name="name" value="清零" id="zero" />
+                <input type="button" name="name" value="合計總價" id="he" />
+                <input type="text" name="name" value="" id="heji" style="width:100px;" />
+                <strong>.00￥</strong>
+            </p>
+        </div>
+    </div>
 		
 		
 		<script src="https://code.jquery.com/jquery.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script>
+		   $(function () {
+            //計算總價，編寫總價方法
+            function totalPrice() {
+                var zong = 0;
+                $(".xiaoji").each(function () {
+                    var all = parseInt($(this).text());
+                    zong += all;
+                })
+                $("#heji").val(zong);
+            };
+
+            //設置數量框不可手動填寫（此處為避免不必要的操作失誤）
+            $(".textNum").prop("disabled", true);
+
+            //減號邏輯
+            $(".reduce").click(function () {
+                var num = $(this).siblings(".textNum").val();  //獲取數量框裏的數值
+                num--;  //單擊“-”減號時，數量遞減
+                $(this).siblings(".textNum").val(num); //把數量變化後的新值放入數量框中
+                if (num <= 0) {
+                    $(this).prop("disabled", true); //當輸入框內數值為0時，使“-”減號處於不可用狀態。
+                };
+                var danjia = $(this).siblings(".danjia").text(); //獲取單價
+                var xiaoji = danjia * num; //用單價乘以數量計算得到單個小計的值
+                $(this).siblings(".xiaoji").text(xiaoji); //把得到的小計值放入數量框中顯示
+                totalPrice();//調用“總價”方法，使每點擊減號，數量變化時，總價跟着變化
+            })
+
+            //加號邏輯（邏輯如同減號的邏輯差不多）
+            $(".add").click(function () {
+                var num = $(this).siblings(".textNum").val();
+                num++;
+                $(this).siblings(".textNum").val(num);
+                if (num > 0) {
+                    $(this).siblings(".reduce").prop("disabled", false); //判斷當輸入框內數值大於0，使“-”減號處於解封可用狀態。
+                };
+                var danjia = $(this).siblings(".danjia").text();
+                var xiaoji = danjia * num;
+                $(this).siblings(".xiaoji").text(xiaoji);
+                totalPrice();
+            })
+
+            //點擊合計重整清算(防止單行刪除某項商品後，總價不刷新)
+            $("#he").click(function () {
+                totalPrice(); //調用總價方法
+            })
+
+            //單行刪除商品
+            $(".deleteOne").click(function () {
+                $(this).parent().remove();
+            })
+
+            ////全部刪除商品
+            $("#deleteAll").click(function () {
+                $(".box:checked").parent().remove(); //把被選中的複選框所在的區域刪除
+            })
+
+            //全選
+            $("#allSelect").click(function () {
+                $(".box").prop("checked", true);
+            })
+
+            //取消全選
+            $("#notSelect").click(function () {
+                $(".box").prop("checked", false);
+            });
+
+            //全部清零
+            $("#zero").click(function () {
+                $(".textNum").val(0);
+                $(".xiaoji").text(0);
+                $("#heji").val(0);
+            });
+        })
+</script>
 	</body>
 </html>
