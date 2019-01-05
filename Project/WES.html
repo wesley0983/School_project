@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+		<title>Title Page</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+		<!--[if lt IE 9]>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="container">
+    <h1>My form</h1>
+    <p>How to make these input fields small and retain the layout.</p>
+    <form role="form">
+        <div class="row">
+            <div class="form-group ">
+                <label for="code">Name</label>
+                <input type="text" class="form-control" />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-lg-1 ">
+                <label for="code">Email</label>
+                <input type="text" class="form-control input-normal" />
+            </div>
+        </div>
+        <div class="row">
+            <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+    </form>
+</div>
+		
+		<form method="post" action="Address.do">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-sm-offset-3">
+					<h1 align="center">送貨地址</h1>
+					<c:if test="${not empty errorMsgs}">
+						<ul class="error">
+							<c:forEach var="message" items="${errorMsgs}">
+								<li>${message.value}</li>
+							</c:forEach>
+						</ul>
+					</c:if>
+					<input type="text" name="" class="form-control">
+					<div class="form-group">
+						<label for="receiver">收件人姓名</label>
+						<input type="text" name="receiver" 
+						class="form-control" value="${param.receiver}">
+					</div>
+					<div class="form-group">
+						<label for="phone">收件人電話</label>
+						<input type="text" name="phone" 
+						class="form-control" value="${param.phone}">
+					</div>
+					<div class="form-group">
+						<label for="country">國家</label>
+						<input type="text" name="country" 
+						class="form-control" value="${param.country}">
+					</div>
+					<div class="form-group">
+						<label for="city">城市</label>
+						<input type="text" name="city" 
+						class="form-control" value="${param.city}">
+					</div>
+					<div class="form-group">
+						<label for="detail">地址</label>
+						<input type="text" name="detail" 
+						class="form-control" value="${param.detail}">
+					</div>
+					<div class="form-group">
+						<label for="zip">郵遞區號</label>
+						<input type="text" name="zip" 
+						class="form-control" value="${param.zip}">
+					</div>
+					<div class="col-xs-12 col-sm-6">
+						<center>
+							<button type="submit" name="action"
+							value="add_address" class="btn btn-info">新增</button>
+						</center>
+					</div>
+					<div class="col-xs-12 col-sm-6">
+						<center>
+							<button type="submit" name="action"
+							value="cancel" class="btn btn-info">取消</button>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>	
+		
+		
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</body>
+</html>
