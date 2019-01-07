@@ -19,6 +19,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 		<title>商品詳情</title>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.css" />
 		<!--[if lt IE 9]>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -131,81 +132,81 @@
 	</style>
 	</head>
 	<body>
-		
+<%@ include file="/front-end/CA105G1_header.file" %>
 		<div class="container-fluid backgc">
 			<div class="row">
 				
 
                 <!-- navbar -->
-				<div class="container-fluid ">
-					<div class="row">
-						<nav class="navbar navbar-default" role="navigation">
-							<div class="container">
-								<div class="navbar-header">
-									<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-										<span class="sr-only">選單切換</span>
-										<span class="icon-bar"></span>
-										<span class="icon-bar"></span>
-										<span class="icon-bar"></span>
-									</button>
-									<a class="navbar-brand" href="#">SPORTGO</a>
-								</div>
+<!-- 				<div class="container-fluid "> -->
+<!-- 					<div class="row"> -->
+<!-- 						<nav class="navbar navbar-default" role="navigation"> -->
+<!-- 							<div class="container"> -->
+<!-- 								<div class="navbar-header"> -->
+<!-- 									<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"> -->
+<!-- 										<span class="sr-only">選單切換</span> -->
+<!-- 										<span class="icon-bar"></span> -->
+<!-- 										<span class="icon-bar"></span> -->
+<!-- 										<span class="icon-bar"></span> -->
+<!-- 									</button> -->
+<!-- 									<a class="navbar-brand" href="#">SPORTGO</a> -->
+<!-- 								</div> -->
 
-								<!-- 手機隱藏選單區 -->
-								<div class="collapse navbar-collapse navbar-ex1-collapse ">
-									<!-- 左選單 -->
-									<ul class="nav navbar-nav">
-										<li class="active">
-											<a href="#">我的商品</a>
-										</li>
-										<li>
-											<a href="#">我的賣場分類</a>
-										</li>
-										<li>
-											<a href="#">我的銷售</a>
-										</li>
-										<li>
-											<a href="#">我的行銷活動</a>
-										</li>
-										<li>
-											<a href="#">我的進帳</a>
-										</li>
-										<li>
-											<a href="#">我的錢包</a>
-										</li>
-										<li>
-											<a href="#">賣場設定</a>
-										</li>
-									</ul>
-									<!-- 右選單 -->
-									<ul class="nav navbar-nav navbar-right">
+<!-- 								手機隱藏選單區 -->
+<!-- 								<div class="collapse navbar-collapse navbar-ex1-collapse "> -->
+<!-- 									左選單 -->
+<!-- 									<ul class="nav navbar-nav"> -->
+<!-- 										<li class="active"> -->
+<!-- 											<a href="#">我的商品</a> -->
+<!-- 										</li> -->
+<!-- 										<li> -->
+<!-- 											<a href="#">我的賣場分類</a> -->
+<!-- 										</li> -->
+<!-- 										<li> -->
+<!-- 											<a href="#">我的銷售</a> -->
+<!-- 										</li> -->
+<!-- 										<li> -->
+<!-- 											<a href="#">我的行銷活動</a> -->
+<!-- 										</li> -->
+<!-- 										<li> -->
+<!-- 											<a href="#">我的進帳</a> -->
+<!-- 										</li> -->
+<!-- 										<li> -->
+<!-- 											<a href="#">我的錢包</a> -->
+<!-- 										</li> -->
+<!-- 										<li> -->
+<!-- 											<a href="#">賣場設定</a> -->
+<!-- 										</li> -->
+<!-- 									</ul> -->
+<!-- 									右選單 -->
+<!-- 									<ul class="nav navbar-nav navbar-right"> -->
 
-										<li>
-											<a href="#"></a>
-										</li>
-										<li>
-											<a href="#">個人設定</a>
-										</li>
-										<li class="dropdown">
-											<a href="#" class="dropdown-toggle" data-toggle="dropdown">繁體中文
-												<b class="caret"></b>
-											</a>
-											<ul class="dropdown-menu">
-												<li>
-													<a href="#">切換成買家</a>
-												</li>
-												<li>
-													<a href="#">登出</a>
-												</li>
-											</ul>
-										</li>
-									</ul>
-								</div>
-								<!-- 手機隱藏選單區結束 -->
-							</div>
-						</nav>
-					</div>
-				</div>
+<!-- 										<li> -->
+<!-- 											<a href="#"></a> -->
+<!-- 										</li> -->
+<!-- 										<li> -->
+<!-- 											<a href="#">個人設定</a> -->
+<!-- 										</li> -->
+<!-- 										<li class="dropdown"> -->
+<!-- 											<a href="#" class="dropdown-toggle" data-toggle="dropdown">繁體中文 -->
+<!-- 												<b class="caret"></b> -->
+<!-- 											</a> -->
+<!-- 											<ul class="dropdown-menu"> -->
+<!-- 												<li> -->
+<!-- 													<a href="#">切換成買家</a> -->
+<!-- 												</li> -->
+<!-- 												<li> -->
+<!-- 													<a href="#">登出</a> -->
+<!-- 												</li> -->
+<!-- 											</ul> -->
+<!-- 										</li> -->
+<!-- 									</ul> -->
+<!-- 								</div> -->
+<!-- 								手機隱藏選單區結束 -->
+<!-- 							</div> -->
+<!-- 						</nav> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 
 
 
@@ -238,6 +239,7 @@
 								    							</div>
 								    							<!-- 商品單價 -->
 								    							<div class="fontsize_s">
+								    							    <input type="hidden"  id="pro_bonus" value="<%=proVO.getPro_bonus()%>"/>
 								    								<%=proVO.getPro_bonus()%>
 								    							</div>
 								    							<!-- 商品規格 -->
@@ -256,12 +258,8 @@
 								    							</div>
 								    						</div>
 								    						<div>
-								    							<FORM METHOD="post" ACTION="<%= request.getContextPath()%>/shoppingCartServlet/shoppingCartServlet.do" name="form1" enctype="multipart/form-data">
-								    							<input type="submit" value="加入購物車">
-								    							<input class="text_box" name="pro_count" type="hidden" value="1" />
-								    							<input type="hidden" name="pro_no" value="<%= proVO.getPro_no() %>">
-								    							<input type="hidden" name="action" value="insert">
-								    							</FORM>
+								    							<button id="btn1" type="button" value="<%= proVO.getPro_no() %>">加入購物車</button>
+								    							
 								    						</div>
 								    						<div>
 								    							<FORM METHOD="post" ACTION="<%= request.getContextPath()%>/shoppingCartServlet/shoppingCartServlet.do" name="form1" enctype="multipart/form-data">
@@ -300,28 +298,85 @@
 
 
 
-
+<%@ include file="/front-end/CA105G1_footer.file" %>
 
 			</div>
 		</div>
 		
-		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.js" type="text/javascript"></script>
 		<script src="https://code.jquery.com/jquery.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script type="text/javascript"> 
 			$(function(){
+                var mem_no_login = "<%=session.getAttribute("mem_no")%>";
+                console.log(mem_no_login);
 				var t = $(".text_box");
 				$("#add").click(function(){		
 					t.val(parseInt(t.val())+1)
 					// setTotal();
 				})
 				$("#min").click(function(){
-					t.val(parseInt(t.val())-1)
+					if (parseInt(t.val())>1) {                     //判斷數量值大于1時才可以減少
+		                t.val(parseInt(t.val())-1)
+		                }else{
+		                $("#min").attr("disabled","disabled")        //當$("#min")為1時，$("#min")不可讀狀態
+		               }
 					// setTotal();
 				})
 				$("#num").keyup(function(){
 					t.val(parseInt(t.val()))
 				})
+				
+				//****************************************
+				$("#btn1").on('click', function () {
+					console.log($("#pro_bonus").val());
+					if (mem_no_login != null){
+
+				        
+			        	test();
+			        } else {
+                        console.log("有")
+						$.ajax({
+							 type: "POST",
+							 url: "<%= request.getContextPath()%>/shoppingCartServlet/shoppingCartServlet.do",
+							 data: creatQueryString($(this).val(), $('#num').val() , $('#pro_bonus').val()),
+							 dataType: "json",
+							 success: function (data){
+								 
+						     },
+						     error: function(){alert("AJAX-class發生錯誤囉!")}
+				         });
+				        swal({
+				            title: "成功加入購物車",
+				            html: "按下確定前往購物車",
+				            type: "success", // type can be "success", "error", "warning", "info", "question"
+				            showCancelButton: true,
+				        	showCloseButton: true,
+				        }).then(
+				        	   function (result) {
+			                if (result) {
+			                	window.location.replace("<%= request.getContextPath()%>/shoppingCartServlet/shoppingCartServlet.do?action=getAll_For_Display"); 
+			                }
+			            }, function(dismiss) { // dismiss can be "cancel" | "overlay" | "esc" | "cancel" | "timer"
+			            		
+				        });
+			        }
+			    });
+			    function test(){
+			    	console.log("沒有");
+			        	swal("Here's a message!");
+			    	console.log("test");
+			    }
+				function creatQueryString(buttonid,pro_count,pro_bonus){
+					
+					var queryString= {"action":"insert", "pro_no":buttonid, "pro_count":pro_count ,"pro_bonus":pro_bonus};
+					console.log(queryString);
+					return queryString;
+				}
+				//****************************************
+				
+				
+				
 				
 				// function setTotal(){
 				// 	$("#total").html((parseInt(t.val())*3.95).toFixed(2));
