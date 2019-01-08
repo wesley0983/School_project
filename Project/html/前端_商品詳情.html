@@ -1,10 +1,12 @@
+<%@page import="com.memberlist.model.MemberlistVO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.product.model.*"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
     ProductService proSvc = new ProductService();
-	ProductVO proVO = (ProductVO) request.getAttribute("proVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
+// 	ProductVO proVO = (ProductVO) request.getAttribute("proVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
+	ProductVO proVO = (ProductVO)session.getAttribute("proVO");
 	List<ProductVO> list = proSvc.getAll();
     pageContext.setAttribute("list",list);
 %>
@@ -308,8 +310,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script type="text/javascript"> 
 			$(function(){
-                var mem_no_login = "<%=session.getAttribute("mem_no")%>";
-                console.log(mem_no_login);
+
 				var t = $(".text_box");
 				$("#add").click(function(){		
 					t.val(parseInt(t.val())+1)
@@ -328,64 +329,64 @@
 				})
 				
 				//****************************************
+				var proVO = "<%= session.getAttribute("proVO")%>";
+				console.log(proVO);
+				
 				$("#btn1").on('click', function () {
-					console.log($("#pro_bonus").val());
-					if (mem_no_login != null){
-
-				        
-			        	test();
-			        } else {
-                        console.log("有")
-						$.ajax({
-							 type: "POST",
-							 url: "<%= request.getContextPath()%>/shoppingCartServlet/shoppingCartServlet.do",
-							 data: creatQueryString($(this).val(), $('#num').val() , $('#pro_bonus').val()),
-							 dataType: "json",
-							 success: function (data){
+					var mem_no_login = "<%= session.getAttribute("memberlistVO")%>";
+					console.log(mem_no_login);
+// 					if(Object.keys(mem_no_login).length === 0){
+// 						console.log("以登入");
+// 					} else {
+// 						console.log("未登入");
+// 					}
+					<%
+					MemberlistVO memVO = (MemberlistVO)session.getAttribute("memberlistVO");
+					if(memVO.equals(null)){%>
+						console.log("未登入");
+					<%}else{%>
+					    console.log("以登入");
+					<%}%>
+// 					if(Object.keys(mem_no_login) === 0){  //超怪
+<%-- 					    <%session.setAttribute("location", request.getRequestURI());%>  --%>
+// 					    window.location.replace("http://localhost:8081/CA105G1/front-end/memberlist/Login.jsp"); 
+// 					} else {
+						
+// 						console.log("nonono");
+// 						$.ajax({
+// 							 type: "POST",
+<%-- 							 url: "<%= request.getContextPath()%>/shoppingCartServlet/shoppingCartServlet.do", --%>
+// 							 data: creatQueryString($(this).val(), $('#num').val() , $('#pro_bonus').val()),
+// 							 dataType: "json",
+// 							 success: function (data){
 								 
-						     },
-						     error: function(){alert("AJAX-class發生錯誤囉!")}
-				         });
-				        swal({
-				            title: "成功加入購物車",
-				            html: "按下確定前往購物車",
-				            type: "success", // type can be "success", "error", "warning", "info", "question"
-				            showCancelButton: true,
-				        	showCloseButton: true,
-				        }).then(
-				        	   function (result) {
-			                if (result) {
-			                	window.location.replace("<%= request.getContextPath()%>/shoppingCartServlet/shoppingCartServlet.do?action=getAll_For_Display"); 
-			                }
-			            }, function(dismiss) { // dismiss can be "cancel" | "overlay" | "esc" | "cancel" | "timer"
+// 						     },
+// 						     error: function(){alert("AJAX-class發生錯誤囉!")}
+// 				         });
+// 				        swal({
+// 				            title: "成功加入購物車",
+// 				            html: "按下確定前往購物車",
+// 				            type: "success", // type can be "success", "error", "warning", "info", "question"
+// 				            showCancelButton: true,
+// 				        	showCloseButton: true,
+// 				        }).then(
+// 				        	   function (result) {
+// 			                if (result) {
+<%-- 			                	window.location.replace("<%=request.getContextPath()%>/shoppingCartServlet/shoppingCartServlet.do?action=getAll_For_Display");  --%>
+// 			                }
+// 			            }, function(dismiss) { // dismiss can be "cancel" | "overlay" | "esc" | "cancel" | "timer"
 			            		
-				        });
-			        }
+// 				        });
+// 					}
 			    });
-			    function test(){
-			    	console.log("沒有");
-			        	swal("Here's a message!");
-			    	console.log("test");
-			    }
 				function creatQueryString(buttonid,pro_count,pro_bonus){
 					
 					var queryString= {"action":"insert", "pro_no":buttonid, "pro_count":pro_count ,"pro_bonus":pro_bonus};
 					console.log(queryString);
 					return queryString;
 				}
-				//****************************************
-				
-				
-				
-				
-				// function setTotal(){
-				// 	$("#total").html((parseInt(t.val())*3.95).toFixed(2));
-				// }
-				// setTotal();
+
 			})
-			// function returnvalue(){
-			// 	$("#returnValue").html((parseInt(t.val())).toFixed(2));
-			// }
 
 
 
