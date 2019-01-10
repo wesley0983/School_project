@@ -206,64 +206,66 @@
 															<th>商品當前庫存</th>
 															<th>操作</th>
 														</tr>
-														<tr>
-															<th>
-															    <img src="<%=request.getContextPath()%>
-									/front-end/memberlist/showPicture.do?mem_no=${ordListVO.mem_no}"
-									style="max-width:40px;max-height:40px;">
-																${memSvc.getOneMem(ordListVO.mem_no).mem_name}
-															</th>
-															<th>${ordListVO.mem_no}</th>
-															<th>${ordListVO.ord_no}</th>
-															<th></th>
-															<th><div id="${ordListVO.ord_no}">${ordListVO.ord_status}</div></th>
-															<th></th>
-															<th>
-																<select name=""  class="form-control select_ord_change" style="width:90px;">
-																	<option value="${ordListVO.ord_no}">完成</option>
-																	<option value="${ordListVO.ord_no}">取消</option>
-																</select>
-															    
-															</th>
-														</tr>
 													</thead>
-													<tbody class="panel">
-														
-														<c:forEach var="orddetails" items="${orddetailsSvc.getOneOrd(ordListVO.ord_no)}" >
-															<tr>
-																<!-- 商品圖片名稱 -->
-																<td style="text-align: left;">
-																	<div style="height: 80px">
-																		<img class="imgsize" src="<%=request.getContextPath()%>/pro/proImg.do?pro_no=${proSvc.getOneProduct(orddetails.pro_no).pro_no}">
-																		${proSvc.getOneProduct(orddetails.pro_no).pro_name}
-																	</div>
-																</td>
-																<!-- 商品編號 -->
-																<td>${orddetails.pro_no }</td>
-																<!-- 買家應付金額 -->
-																<td>
-																	${orddetails.ord_probonuns *orddetails.pro_count}
-																</td>
-																<!-- 買家購買數量 -->
-																<td>
-																	${orddetails.pro_count }
-																</td>
-																<!-- 商品狀態 -->
-																<td>
-																	${proSvc.getOneProduct(orddetails.pro_no).pro_shelve}
-																</td>
-																<!-- 商品庫存 -->
-																<td>
-																	${proSvc.getOneProduct(orddetails.pro_no).pro_stock}
-																</td>
-																<!-- 下拉式按鈕 -->
-																<td>
-																	
-																</td>
-															</tr>
-														</c:forEach>
 
-													</tbody>
+													<div class="panel">
+														<tbody >
+																<tr>
+																	<td>
+																	    <img src="<%=request.getContextPath()%>
+											/front-end/memberlist/showPicture.do?mem_no=${ordListVO.mem_no}"
+											style="max-width:40px;max-height:40px;">
+																		${memSvc.getOneMem(ordListVO.mem_no).mem_name}
+																	</td>
+																	<td>${ordListVO.mem_no}</td>
+																	<td>${ordListVO.ord_no}</td>
+																	<td></td>
+																	<td><div id="${ordListVO.ord_no}">${ordListVO.ord_status}</div></td>
+																	<td></td>
+																	<td>
+																		<select name=""  class="form-control select_ord_change" style="width:90px;">
+																			<option value="${ordListVO.ord_no}">完成</option>
+																			<option value="${ordListVO.ord_no}">取消</option>
+																		</select>
+																	    
+																	</td>
+																</tr>	    
+															<c:forEach var="orddetails" items="${orddetailsSvc.getOneOrd(ordListVO.ord_no)}" >
+																<tr>
+																	<!-- 商品圖片名稱 -->
+																	<td style="text-align: left;">
+																		<div style="height: 80px">
+																			<!-- <img class="imgsize" src="<%=request.getContextPath()%>/pro/proImg.do?pro_no=${proSvc.getOneProduct(orddetails.pro_no).pro_no}"> -->
+																			${proSvc.getOneProduct(orddetails.pro_no).pro_name}
+																		</div>
+																	</td>
+																	<!-- 商品編號 -->
+																	<td>${orddetails.pro_no }</td>
+																	<!-- 買家應付金額 -->
+																	<td>
+																		${orddetails.ord_probonuns *orddetails.pro_count}
+																	</td>
+																	<!-- 買家購買數量 -->
+																	<td>
+																		${orddetails.pro_count }
+																	</td>
+																	<!-- 商品狀態 -->
+																	<td>
+																		${proSvc.getOneProduct(orddetails.pro_no).pro_shelve}
+																	</td>
+																	<!-- 商品庫存 -->
+																	<td>
+																		${proSvc.getOneProduct(orddetails.pro_no).pro_stock}
+																	</td>
+																	<!-- 下拉式按鈕 -->
+																	<td>
+																		
+																	</td>
+																</tr>
+															</c:forEach>
+														</tbody>
+													</div>
+
 												</table>
 											</c:forEach>		
 										</div>
@@ -276,30 +278,30 @@
 
 
 
-<!-- 			<script src="https://code.jquery.com/jquery.js"></script> -->
+			<script src="https://code.jquery.com/jquery.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 			<script type="text/javascript">
 				$(document).ready(function(){
 				      $(".flip").click(function(){
 				          $(this).siblings(".panel").slideToggle("slow");
-				          $(this).siblings(".xs1").toggle();
-				          $(".xs1").toggle();
-				          $(".xs2").toggle();
+// 				          $(this).siblings(".xs1").toggle();
+// 				          $(".xs1").toggle();
+// 				          $(".xs2").toggle();
 				        });
 					<!--下拉狀態-->
-					$('.select_ord_change').change(function(){
-						$.ajax({
-							 type: "POST",
-							 url: "<%= request.getContextPath()%>/ord/ord.do",
-							 data: creatQueryOrdSelect($(this).val(),$("option:selected", this).text()),
-							 dataType: "json",
-							 success: function (data){
-								 console.log(data.ord_no+'A');
-								 $('#'+data.ord_no).html(data.ord_status);
-						     },
-						     error: function(){alert("AJAX-class發生錯誤囉!")}
-				         })
-					})	
+					// $('.select_ord_change').change(function(){
+					// 	$.ajax({
+					// 		 type: "POST",
+					// 		 url: "<%= request.getContextPath()%>/ord/ord.do",
+					// 		 data: creatQueryOrdSelect($(this).val(),$("option:selected", this).text()),
+					// 		 dataType: "json",
+					// 		 success: function (data){
+					// 			 console.log(data.ord_no+'A');
+					// 			 $('#'+data.ord_no).html(data.ord_status);
+					// 	     },
+					// 	     error: function(){alert("AJAX-class發生錯誤囉!")}
+				 //         })
+					// })	
 				})
 					<!--按鈕-->
 // 					$('.ok').each( function() {
@@ -307,7 +309,7 @@
 // 							var val = $(this).val();
 // 							$.ajax({
 // 								 type: "POST",
-<%-- 								 url: "<%= request.getContextPath()%>/ord/ord.do", --%>
+// <%-- 								 url: "<%= request.getContextPath()%>/ord/ord.do", --%>
 // 								 data: creatQueryOK(val),
 // 								 dataType: "json",
 // 								 success: function (data){
@@ -322,7 +324,7 @@
 // 							var val = $(this).val();
 // 							$.ajax({
 // 								 type: "POST",
-<%-- 								 url: "<%= request.getContextPath()%>/ord/ord.do", --%>
+// <%-- 								 url: "<%= request.getContextPath()%>/ord/ord.do", --%>
 // 								 data: creatQuerycancel(val),
 // 								 dataType: "json",
 // 								 success: function (data){

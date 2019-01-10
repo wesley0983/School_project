@@ -1,96 +1,52 @@
-<!doctype html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>example</title>
-<style type="text/css">
-    .css-table{
-        display: table;
-    }
-    .css-table .thead{
-        display:table-header-group;
-    }
-    .css-table .tbody{
-        display:table-row-group;
-    }
-    .css-table .tr{
-        display:table-row;
-    }
-    .css-table .th, .css-table .td{
-        display:table-cell;
-    }
-</style>
-</head>
-<body>
-    <div id="css-table" class="css-table">
-        <div class="thead">
-            <div class="tr">
-                <div class="th">標題1</div>
-                <div class="th">標題2</div>
-            </div>
-        </div>
-        <div class="tbody">
-            <div class="tr">
-                <div class="td">內容1-1</div>
-                <div class="td">內容1-2</div>
-            </div>
-            <div class="tr">
-                <div class="td">內容2-1</div>
-                <div class="td">內容2-2</div>
-            </div>
-            <div class="tr">
-                <div class="td">內容3-1</div>
-                <div class="td">內容3-2</div>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
-<!doctype html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>example</title>
-<style type="text/css">
-    .css-table{
-        display: table;
-    }
-    .css-table .thead{
-        display:table-header-group;
-    }
-    .css-table .tbody{
-        display:table-row-group;
-    }
-    .css-table .tr{
-        display:table-row;
-    }
-    .css-table .th, .css-table .td{
-        display:table-cell;
-    }
-</style>
-</head>
-<body>
-    <div id="css-table" class="css-table">
-        <div class="thead">
-            <div class="tr">
-                <div class="th">標題1</div>
-                <div class="th">標題2</div>
-            </div>
-        </div>
-        <div class="tbody">
-            <div class="tr">
-                <div class="td">內容1-1</div>
-                <div class="td">內容1-2</div>
-            </div>
-            <div class="tr">
-                <div class="td">內容2-1</div>
-                <div class="td">內容2-2</div>
-            </div>
-            <div class="tr">
-                <div class="td">內容3-1</div>
-                <div class="td">內容3-2</div>
-            </div>
-        </div>
-    </div>
-</body>
+<!DOCTYPE html>
+<html lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>Title Page</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+        <!--[if lt IE 9]>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        
+       
+<div class='tbody-contain'>
+//第一行
+<div class='item-contain'>
+<div class='item-parent'>123</div>
+<div class='item-child'>123</div>
+<div class='item-child'>123</div>
+</div>
+//第二行
+<div class='item-contain'>
+<div class='item-parent'>44</div>
+<div class='item-child'>44</div>
+<div class='item-child'>44</div>
+</div>
+</div>
+        
+        
+        <script src="https://code.jquery.com/jquery.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+            
+ $(document).ready(function () {
+        
+ $scope.toggle=function ($event) { //参数事件
+            if($($event.target).html()=='展开'){//通过事件获取发生这个事件的元素
+                $($event.target).html('收起');
+                $($event.target).parents('.bill-list-title').siblings('.bill-list-detial').show();
+            }else{
+                $($event.target).html('展开');
+                $($event.target).parents('.bill-list-title').siblings('.bill-list-detial').hide();
+            }
+        };
+        });
+
+        </script>
+    </body>
 </html>
