@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+		<title>Title Page</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+		<!--[if lt IE 9]>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<style type="text/css">
+			.divTable{
+	display: table;
+	width: 100%;
+}
+.divTableRow {
+	display: table-row;
+}
+.divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+}
+.divTableCell, .divTableHead {
+	border: 1px solid #999999;
+	display: table-cell;
+	padding: 3px 10px;
+}
+.divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+	font-weight: bold;
+}
+.divTableFoot {
+	background-color: #EEE;
+	display: table-footer-group;
+	font-weight: bold;
+}
+.divTableBody {
+	display: table-row-group;
+}
+		</style>
+	</head>
+	<body>
+	  <div class="flip"><span class="1">Read more</span></div>
+  <div class="panel">一化科技e-work一化科技e-work一化科技e-work一化科技e-work</div>	
+<div class="flip">
+	<div class="divTable">
+		<div class="divTableBody">
+			<div class="divTableRow">
+				<div class="divTableCell">商品名稱圖片</div>
+				<div class="divTableCell">商品編號</div>
+				<div class="divTableCell">買家應付金額</div>
+				<div class="divTableCell">買家購買數量</div>
+				<div class="divTableCell">訂單狀態</div>
+				<div class="divTableCell">商品當前庫存</div>
+				<div class="divTableCell">操作</div>
+			</div>
+			<div class="divTableRow">
+				<div class="divTableCell">
+					<img src="<%=request.getContextPath()%>/front-end/memberlist/showPicture.do?mem_no=${ordListVO.mem_no} style="max-width:40px;max-height:40px;">${memSvc.getOneMem(ordListVO.mem_no).mem_name}
+				</div>
+				<div class="divTableCell">${ordListVO.mem_no}</div>
+				<div class="divTableCell">${ordListVO.ord_no}</div>
+				<div class="divTableCell"></div>
+				<div class="divTableCell">
+					<div id="${ordListVO.ord_no}">${ordListVO.ord_status}</div>
+				</div>
+				<div class="divTableCell"></div>
+				<div class="divTableCell">
+					<select name=""  class="form-control select_ord_change" style="width:90px;">
+						<option value="${ordListVO.ord_no}">完成</option>
+						<option value="${ordListVO.ord_no}">取消</option>
+					</select>
+				</div>
+			</div>
+			<div class="divTableRow">
+				<c:forEach var="orddetails" items="${orddetailsSvc.getOneOrd(ordListVO.ord_no)}" >
+				<div class="divTableCell">
+					<div style="height: 80px">
+						<img class="imgsize" src="<%=request.getContextPath()%>/pro/proImg.do?pro_no=${proSvc.getOneProduct(orddetails.pro_no).pro_no}">
+						${proSvc.getOneProduct(orddetails.pro_no).pro_name}
+					</div>
+				</div>
+				<div class="divTableCell">${orddetails.pro_no }</div>
+				<div class="divTableCell">${orddetails.ord_probonuns *orddetails.pro_count}</div>
+				<div class="divTableCell">${orddetails.pro_count }</div>
+				<div class="divTableCell">${proSvc.getOneProduct(orddetails.pro_no).pro_shelve}</div>
+				<div class="divTableCell">${proSvc.getOneProduct(orddetails.pro_no).pro_stock}</div>
+				<div class="divTableCell"></div>
+				</c:forEach>
+			</div>
+		</div>
+	</div>
+</div>
+		
+		
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+			      $(document).ready(function(){
+        
+      $(".flip").click(function(){
+          $(this).siblings(".panel").slideToggle("slow");
+          $(this).siblings(".xs1").toggle();
+          $(".xs1").toggle();
+          $(".xs2").toggle();
+        });
+  })
+		</script>
+	</body>
+</html>
