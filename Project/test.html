@@ -1,268 +1,126 @@
-<%@page import="com.product.model.*"%>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="java.util.*"%>
-
-<%-- 此頁練習採用 EL 的寫法取值 --%>
-
-<%
-  ProductService proSvc = new ProductService();
-  List<ProductVO> list = new ArrayList<ProductVO>();
-  if ("findBy".equals(request.getAttribute("findBy"))) {
-    list = (List<ProductVO>) request.getAttribute("pro_ByCompositeQuery");
-  } else {
-    list = proSvc.getAll();
-  }
-    pageContext.setAttribute("list",list);
-
-%>
-<jsp:useBean id="proclassSvc" scope="page" class="com.productclass.model.ProductClassService" />
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+		<title>Title Page</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+		<!--[if lt IE 9]>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<style type="text/css">
 
-  <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-  <title>我的商品</title>
-  
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css">
-<!-- bootstrap -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-<!-- sweetalert-link -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.js" type="text/javascript"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.10.3/sweetalert2.css" />
-<!--  -->
-<!--  <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+				.s-txt {
+			/*float:left;*/
 
+		}
+		.s-xxs {
+			display:inline-block;
+			vertical-align:middle;
+		}
+		.s-xx { 
+			float:left;
+			color:#e3e3e3;
+			padding-right:8px;
+			cursor:pointer;
+			font-size: 25px;
+			vertical-align:middle;
+		}
+				/*外框*/
+		.s-haoping {
+			color:#f13a3a;
+			border:1px solid #f13a3a;
+			padding:2px 4px;
+			font-size:12px;
+			vertical-align:middle;
+			position:relative;
+			display:none;
+		}
+		/*外框*/
+		.s-haoping .s-hp-triangle0 {
+			border-width:4px;
+			position:absolute;
+			top:5px;
+			left:-8px;
+			border-color:transparent #f13a3a transparent transparent;
+			border-style:dashed solid dashed dashed;
+		}
+		/*外框*/
+		.s-haoping .s-hp-triangle1 {
+			border-width:4px;
+			position:absolute;
+			top:5px;
+			left:-7px;
+			border-color:transparent  #f8f8f8 transparent transparent;
+			border-style:dashed solid dashed dashed;
+		}
+				.divStyle{
+            border-bottom: 1px dotted #c8cbcc;
+		}
+		/*星星顏色*/
+		.color-f13a3a {
+			color:#f13a3a;
+		}
+	</style>
+	<body>
+		
+		<!-- 評價系統 -->
+			<div class="star">
+			    <span class="s-txt">產品評價：</span>
+				    <span class="s-xxs">
+				        <span class="iconfont s-xx">☆</span>
+					    <span class="iconfont s-xx">☆</span>
+					    <span class="iconfont s-xx">☆</span>
+					    <span class="iconfont s-xx">☆</span>
+					    <span class="iconfont s-xx">☆</span>
+				    </span>
+			    <span class="s-haoping">
+				<em class="s-hp-triangle0">
+			        </em><em class="s-hp-triangle1">
+			        </em><span class="s-hp-txt">5分好評</span>
+			    </span>
+			</div>
+		
+		
+		<script src="https://code.jquery.com/jquery.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+		<script type="text/javascript">
+	
+$(function() {
+    var isclick = false;
+    var arr = ["1分差評", "2分中評", "3分中評", "4分好評", "5分好評"];
+    var clickind = -1;
 
+    $(".s-xx").on("click", function() {
+        isclick = true;
+        clickind = $(this).index();
+        console.log(clickind);
+    });
+    $(".s-xx").hover(function() {
+        var ind = $(this).index();
+        $(".s-xx").removeClass("color-f13a3a");
+        for (var i = 0; i <= ind; i++) {
+            $(".s-xx").eq(i).addClass("color-f13a3a");
+            $(".s-haoping").find(".s-hp-txt").text(arr[i]).end().show();
+        }
+    }, function() {
+        if (!isclick) {
+            $(".s-xx").removeClass("color-f13a3a");
+            $(".s-haoping").hide();
+        } else {
+            $(".s-xx").removeClass("color-f13a3a");
+            for (var i = 0; i <= clickind; i++) {
+                $(".s-xx").eq(i).addClass("color-f13a3a");
+                $(".s-haoping").find(".s-hp-txt").text(arr[i]).end().show();
+            }
+        }
+    });
+});
 
-
-  <!--[if lt IE 9]>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
-  <![endif]-->
-  <style type="text/css">
-    .aa {
-      background-color: #faa;
-    }
-    .bb {
-      background-color: #afa;
-    }
-    .cc {
-      background-color: #aaf;
-    }
-    .dd {
-        background-color: #aaa;
-    }
-
-    .ee {
-      background-color: #0f5;
-    }
-
-    .ff {
-      background-color: #E4D10F;
-    }
-
-    .dropdown-menu li:hover .sub-menu {
-      /*碰到navbar會下拉*/
-      visibility: visible;
-    }
-
-    .dropdown:hover .dropdown-menu {
-      /*碰到navbar會下拉*/
-      display: block;
-    }
-
-    .backgc {
-      /*背景底色*/
-      background-color: #F6F6F6;
-    }
-
-    .navsize {
-      /*navbar寬度大小*/
-      width: 1200px;
-    }
-
-    .warp {
-      /*商品內頁*/
-      box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, .09);
-      background-color: rgb(252, 252, 253);
-      padding: 20px 48px;
-      width: 1200px;
-      margin: auto;
-
-    }
-
-    .warpwidth {
-      /*商品內頁大小*/
-      width: 1104px;
-    }
-
-    .fontsize {
-      /*文字標籤*/
-      font-size: 18px;
-      font-weight: 400;
-      color: #000;
-      margin: 30px 0 15px;
-      text-align: left;
-    }
-
-    .fontsize_s {
-      /*文字內容標籤*/
-      min-height: 40px;
-      color: #666;
-    }
-
-    .valuesize {
-      /*value標籤*/
-      min-height: 40px;
-    }
-
-    .buttonsize {
-      /*按鈕大小*/
-      text-align: center;
-    }
-
-    .tablebgc {
-      background-color: #F7F5F5;
-    }
-
-    .thwidth {
-      /*商品名稱圖片大小*/
-      width: 250px;
-    }
-
-    table {
-      border-collapse: separate;
-      border-spacing: 0 0.5rem;
-    }
-
-    th {
-      text-align: center;
-    }
-
-    td {
-      text-align: center;
-    }
-    .imgsize {
-      width: 80px;
-      height: auto;
-      float: left;
-    }
-    .pagecenter{
-            text-align: center;
-    }
-    .divAdd{
-      /*按鈕add靠右*/
-    }
-    .flip{margin:0px;padding:5px;text-align:center;background:#E09697;cursor:pointer;font-family:'Arial';}
-.panel{margin:0px;padding:5px;text-align:center;background:#e5eecc;border:solid 1px #c3c3c3;display:none;font-family:'Arial';}
-#css_table {
-      display:table;
-  }
-.css_tr {
-      display: table-row;
-  }
-.css_td {
-      display: table-cell;
-  }
-
-    </style>
-  </head>
-
-
-<div>    
-<div class="flip"><span class="1">Read more</span></div>
-<div class="panel">一化科技e-work一化科技e-work一化科技e-work一化科技e-work</div>
-</div>
-<br>
-<div>
-  <div class="flip"><span class="1">Read more</span></div>
-  <div class="panel">一化科技e-work一化科技e-work一化科技e-work一化科技e-work</div>
-</div>
-<br>
-<div>
-  <div class="flip"><span class="1">Read more</span></div>
-  <div class="panel">一化科技e-work一化科技e-work一化科技e-work一化科技e-work</div>
-</div>
-<br>
-<div>
-  <div class="flip"><span class="1">Read more</span></div>
-  <div class="panel">一化科技e-work一化科技e-work一化科技e-work一化科技e-work</div>
-</div>
-
-<div id="css_table">
-      <div class="css_tr">
-          <div class="css_td">標題</div>
-          <div class="css_td">回應</div>
-          <div class="css_td">日期</div>
-      </div>
-      <div class="css_tr">
-          <div class="css_td">如何停用WordPress內建搜尋功能？</div>
-          <div class="css_td">5</div>
-          <div class="css_td">2011-10-30</div>
-      </div>
-</div>
-        
-
-      
-      <script type="text/javascript">
-      $(document).ready(function(){
-        
-      $(".flip").click(function(){
-          $(this).siblings(".panel").slideToggle("slow");
-          $(this).siblings(".xs1").toggle();
-          $(".xs1").toggle();
-          $(".xs2").toggle();
-        });
-
-        $('#example').DataTable();
-        $('.select_change').change(function(){
-          $.ajax({
-             type: "POST",
-             url: "<%= request.getContextPath()%>/pro/pro.do",
-             data: creatQuerySelect($(this).val(),$("option:selected", this).text()),
-             dataType: "json",
-             success: function (data){
-               console.log(data.pro_no+'A');
-               $('#'+data.pro_no).html(data.pro_shelve);
-               $('#'+data.pro_no+'A').html(data.pro_shelve);//測試
-               },
-               error: function(){alert("AJAX-class發生錯誤囉!")}
-               })
-        })  
-      })
-      //*************
-      function creatQuerySelect(pro_no,pro_shelve){
-        
-        var queryString= {"action":"ok_cancel", "pro_no":pro_no , "pro_shelve" :pro_shelve};
-        console.log(queryString);
-        return queryString;
-      }
-      
-      //*************
-
-        // document.getElementById("display").style.display = 'none';
-        //    $(function() {  //將圖片預覽
-        //      $('input[type=file]').change(function() {
-        //        var input = $(this);
-        //        document.getElementById("preset").style.display = 'none';
-        //        document.getElementById("display").style.display = 'block';
-        //        if(!!this.files && !!this.files[0]) {
-        //          var reader = new FileReader();
-        //          reader.onload = function(e) {
-        //            $('#pre' + input.prop('id').substr(4,2)).prop('src', e.target.result);
-        //          }
-        //          reader.readAsDataURL(this.files[0]);
-        //        }
-        //      });
-        //    });
-      </script>             
-  </body>           
-</html>           
+</script>
+	</body>
+</html>

@@ -1,14 +1,13 @@
-<%@page import="com.memberlist.model.MemberlistVO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.product.model.*"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
-    ProductService proSvc = new ProductService();
-// 	ProductVO proVO = (ProductVO) request.getAttribute("proVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
+	ProductService proSvc = new ProductService();
+	//	ProductVO proVO = (ProductVO) request.getAttribute("proVO"); //EmpServlet.java(Concroller), 存入req的empVO物件
 	ProductVO proVO = (ProductVO)session.getAttribute("proVO");
 	List<ProductVO> list = proSvc.getAll();
-    pageContext.setAttribute("list",list);
+	pageContext.setAttribute("list",list);
 %>
 <jsp:useBean id="proclassSvc" scope="page" class="com.productclass.model.ProductClassService" />
 
@@ -254,9 +253,13 @@
 								    							</div>
 								    							<!-- 數量 -->
 								    							<div class="fontsize_s">
-								    								<input id="min" name="" type="button" value="-" />
+								    								<!-- <input id="min" name="" type="button" value="-" />
 																	<input id="num" class="text_box"  type="text" value="1" />
-																	<input id="add" name="" type="button" value="+" />
+																	<input id="add" name="" type="button" value="+" /> -->
+
+																	<input type="button" name="name" value="-" class="reduce" />
+													                <input type="text" name="name" value="${hAll[proVO.pro_no]}" class="textNum" style="text-align:center;" size="1"/>
+													                <input type="button" name="name" value="+" class="add" />
 								    							</div>
 								    						</div>
 								    						<div>
@@ -264,10 +267,10 @@
 								    							
 								    						</div>
 								    						<div>
-								    							<FORM METHOD="post" ACTION="<%= request.getContextPath()%>/shoppingCartServlet/shoppingCartServlet.do" name="form1" enctype="multipart/form-data">
-								    								<input type="submit" value="購物車網頁">
-								    								<input type="hidden" name="action" value="getAll_For_Display">
-								    							</FORM>
+<%-- 								    							<FORM METHOD="post" ACTION="<%= request.getContextPath()%>/shoppingCartServlet/shoppingCartServlet.do" name="form1" enctype="multipart/form-data"> --%>
+<!-- 								    								<input type="submit" value="購物車網頁"> -->
+<!-- 								    								<input type="hidden" name="action" value="getAll_For_Display"> -->
+<!-- 								    							</FORM> -->
 								    						</div>
 								    					</div>
 								    				</div>
@@ -311,73 +314,99 @@
 		<script type="text/javascript"> 
 			$(function(){
 
-				var t = $(".text_box");
-				$("#add").click(function(){		
-					t.val(parseInt(t.val())+1)
-					// setTotal();
-				})
-				$("#min").click(function(){
-					if (parseInt(t.val())>1) {                     //判斷數量值大于1時才可以減少
-		                t.val(parseInt(t.val())-1)
-		                }else{
-		                $("#min").attr("disabled","disabled")        //當$("#min")為1時，$("#min")不可讀狀態
-		               }
-					// setTotal();
-				})
-				$("#num").keyup(function(){
-					t.val(parseInt(t.val()))
-				})
+		            //設置數量框不可手動填寫（此處為避免不必要的操作失誤）
+		            $(".textNum").prop("disabled", true);
+
+		            //減號邏輯
+		            $(".reduce").click(function () {
+		                var num = $(this).siblings(".textNum").val();  //獲取數量框裏的數值
+		                var mem_no = $(this).siblings(".return_mem_no").val();//獲取session的當前編號
+		                var pro_no =  $(this).siblings(".return_pro_no").val();//獲取pro_no選擇的商品
+		                var pro_bonus = $(this).siblings(".return_pro_bonus").val();//獲取pro_bonus商品單價
+		                
+		                num--;  //單擊“-”減號時，數量遞減
+		                $(this).siblings(".textNum").val(num); //把數量變化後的新值放入數量框中
+		                
+			               
+		                if (num < ${proVO.pro_stock}){  //當庫存數量大於購買數量時解除封鎖狀態
+		                	$(this).siblings(".add").prop("disabled", false);
+		                }
+		                if (num <= 1) {
+		                    $(this).prop("disabled", true); //當輸入框內數值為0時，使“-”減號處於不可用狀態。
+		                };
+		                var danjia = $(this).siblings(".danjia").text(); //獲取單價
+		                var xiaoji = danjia * num; //用單價乘以數量計算得到單個小計的值
+		                $(this).siblings(".xiaoji").text(xiaoji); //把得到的小計值放入數量框中顯示
+		                totalPrice();//調用“總價”方法，使每點擊減號，數量變化時，總價跟着變化
+		                
+		            });
+
+		            //加號邏輯（邏輯如同減號的邏輯差不多）
+		            $(".add").click(function () {
+		                var num = $(this).siblings(".textNum").val();
+		                var mem_no = $(this).siblings(".return_mem_no").val();//獲取session的當前編號
+		                var pro_no =  $(this).siblings(".return_pro_no").val();//獲取pro_no選擇的商品
+		                var pro_bonus = $(this).siblings(".return_pro_bonus").val();//獲取pro_bonus商品單價
+		                num++;
+		                $(this).siblings(".textNum").val(num);
+		                
+			               
+				        if (num == ${proVO.pro_stock}){ //當庫存數量小於購買數量時封鎖狀態
+				        	$(this).prop("disabled", true);
+		                }
+		                if (num > 0) {
+		                    $(this).siblings(".reduce").prop("disabled", false); //判斷當輸入框內數值大於0，使“-”減號處於解封可用狀態。
+		                };
+		                var danjia = $(this).siblings(".danjia").text();
+		                var xiaoji = danjia * num;
+		                $(this).siblings(".xiaoji").text(xiaoji);
+		                totalPrice();
+		                
+		            });
 				
 				//****************************************
 				var proVO = "<%= session.getAttribute("proVO")%>";
-				console.log(proVO);
+				var mem_no_login = "<%= session.getAttribute("memberlistVO")%>";
 				
 				$("#btn1").on('click', function () {
-					var mem_no_login = "<%= session.getAttribute("memberlistVO")%>";
-					console.log(mem_no_login);
-// 					if(Object.keys(mem_no_login).length === 0){
-// 						console.log("以登入");
-// 					} else {
-// 						console.log("未登入");
-// 					}
-					<%
-					MemberlistVO memVO = (MemberlistVO)session.getAttribute("memberlistVO");
-					if(memVO.equals(null)){%>
-						console.log("未登入");
-					<%}else{%>
-					    console.log("以登入");
-					<%}%>
-// 					if(Object.keys(mem_no_login) === 0){  //超怪
-<%-- 					    <%session.setAttribute("location", request.getRequestURI());%>  --%>
-// 					    window.location.replace("http://localhost:8081/CA105G1/front-end/memberlist/Login.jsp"); 
-// 					} else {
+					if(mem_no_login == "null"){
+						<%session.setAttribute("location", request.getRequestURI());%>  
+						swal({
+						    title: '尚未登入',
+						    text: '請先登入會員。'
+						}).then(
+						    function () {
+						    console.log("<%= request.getContextPath()%>/front-end/memberlist/Login.jsp");
+ 					    	window.location.replace("<%= request.getContextPath()%>/front-end/memberlist/Login.jsp");
+						    }
+						)
 						
-// 						console.log("nonono");
-// 						$.ajax({
-// 							 type: "POST",
-<%-- 							 url: "<%= request.getContextPath()%>/shoppingCartServlet/shoppingCartServlet.do", --%>
-// 							 data: creatQueryString($(this).val(), $('#num').val() , $('#pro_bonus').val()),
-// 							 dataType: "json",
-// 							 success: function (data){
-								 
-// 						     },
-// 						     error: function(){alert("AJAX-class發生錯誤囉!")}
-// 				         });
-// 				        swal({
-// 				            title: "成功加入購物車",
-// 				            html: "按下確定前往購物車",
-// 				            type: "success", // type can be "success", "error", "warning", "info", "question"
-// 				            showCancelButton: true,
-// 				        	showCloseButton: true,
-// 				        }).then(
-// 				        	   function (result) {
-// 			                if (result) {
-<%-- 			                	window.location.replace("<%=request.getContextPath()%>/shoppingCartServlet/shoppingCartServlet.do?action=getAll_For_Display");  --%>
-// 			                }
-// 			            }, function(dismiss) { // dismiss can be "cancel" | "overlay" | "esc" | "cancel" | "timer"
-			            		
-// 				        });
-// 					}
+					} else {
+					$.ajax({
+						 type: "POST",
+						 url: "<%= request.getContextPath()%>/shoppingCartServlet/shoppingCartServlet.do",
+						 data: creatQueryString($(this).val(), $('.textNum').val() , $('#pro_bonus').val()),
+						 dataType: "json",
+						 success: function (data){
+							 
+					     },
+					     error: function(){alert("AJAX-class發生錯誤囉!")}
+			         });
+			        swal({
+			            title: "成功加入購物車",
+			            html: "按下確定前往購物車",
+			            type: "success", // type can be "success", "error", "warning", "info", "question"
+			            showCancelButton: true,
+			        	showCloseButton: true,
+			        }).then(
+			        	   function (result) {
+		                if (result) {
+		                	window.location.replace("<%= request.getContextPath()%>/shoppingCartServlet/shoppingCartServlet.do?action=getAll_For_Display"); 
+		                }
+		            }, function(dismiss) { // dismiss can be "cancel" | "overlay" | "esc" | "cancel" | "timer"
+		            		
+			        });
+					}
 			    });
 				function creatQueryString(buttonid,pro_count,pro_bonus){
 					
@@ -385,8 +414,19 @@
 					console.log(queryString);
 					return queryString;
 				}
-
+				//****************************************
+				
+				
+				
+				
+				// function setTotal(){
+				// 	$("#total").html((parseInt(t.val())*3.95).toFixed(2));
+				// }
+				// setTotal();
 			})
+			// function returnvalue(){
+			// 	$("#returnValue").html((parseInt(t.val())).toFixed(2));
+			// }
 
 
 
