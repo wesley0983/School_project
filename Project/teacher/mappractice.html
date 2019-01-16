@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		 #map {
+                height: 400px;  /* The height is 400 pixels */
+                width: 50%;  /* The width is the width of the web page */
+            }
+	</style>
+</head>
+<body>
+<input type="text" name="addr" id="addr">
+<input type="submit" name="search" value="查詢" id="btnSubmit">
+<div id="map"></div>
+
+
+
+	<script>
+		var map;
+		var directionsService;
+		var directionsDisplay;
+
+		function initMap(){
+			navigator.geolocation.getCurrentPosition(myLoc);
+		}
+
+		function myLoc(pos){
+
+			var loc = {lat: pos.coords.latitude, lng: pos.coords.longitude};
+
+			map = new google.maps.Map(document.getElementById('map'), {
+				center: loc,
+				zoom: 16
+			});
+
+
+			var marker = new google.maps.Marker({
+				position: loc,
+				map: map,
+				animation: google.maps.Animation.DROP,
+				draggable: true
+			});
+
+
+			//畫圓
+			var circle = new google.maps.Circle({
+			  center: loc,
+			  radius: 500,
+			  strokeOpacity: 0,
+			  fillColor: '#f00',
+			  fillOpacity: 0.35,
+			  map: map
+			});
+
+
+
+/*---------------------------------------------------------------------------------------------*/
+			// // 載入路線服務與路線顯示圖層 Directions API
+			directionsService = new google.maps.DirectionsService();
+			directionsDisplay = new google.maps.DirectionsRenderer();
+			// 放置路線圖層
+			directionsDisplay.setMap(map);
+			// 路線相關設定
+			var request = {
+				origin: loc,  //起點座標
+				destination: {lat: 25.037906, lng: 121.549781},  //終點座標
+				travelMode: 'WALKING' //腳踏車模式無法使用?
+			};
+			// 繪製路線
+			directionsService.route(request,function(result, status){
+				if(status == 'OK'){
+					directionsDisplay.setDirections(result);
+				}else{
+					console.log(status);
+				}
+			});
+/*-----------------------------------------------------------------------------------------------*/
+			// 資訊視窗
+			// var infowindow = new google.maps.InfoWindow({
+			// 	content: "123456"
+			// });
+			// var a = -1;
+			// marker.addListener('click',function(){
+			//     a = a * -1;
+			//     if(a > 0){
+			//       infowindow.open(map, marker);
+			//     }else{
+			//       infowindow.close();
+			//     }
+			//   });
+			// google.maps.event.addListener(infowindow, 'closeclick', function(){
+			//   a = a * -1;
+			// });
+/*-----------------------------------------------------------------------------------------------*/
+			// 地圖查詢定位 Geocoding API
+			// var geocoder = new google.maps.Geocoder();
+			// var btnSubmit = document.getElementById("btnSubmit");
+
+			// btnSubmit.addEventListener("click", function(){
+			// 	var addr = document.getElementById("addr").value;
+			// 	console.log(addr);
+			// 	geocoder.geocode({'address': addr}, function(results, status){
+			// 		if(status == 'OK'){
+			// 			map.setCenter(results[0].geometry.location);
+			// 			var marker = new google.maps.Marker({
+			// 				position: results[0].geometry.location,
+			// 				map: map
+			// 			});
+			// 		}else{
+			// 			console.log(status);
+			// 		}
+			// 	});
+			// }, false);
+/*-----------------------------------------------------------------------------------------------*/
+			//顯示海拔高度 Elevation API
+			// var elevator = new google.maps.ElevationService;
+			// var infowindow = new google.maps.InfoWindow();
+			// map.addListener('click', function(event){
+			// 	displayLocationElevation(event.latLng, elevator);
+			// });
+
+			// function displayLocationElevation(location, elevator){
+			// 	elevator.getElevationForLocations({
+   //    			'locations': [location]
+   //  			}, function(results, status) {
+   //    			var coordinate = {
+   //      		lat: results[0].location.lat(),
+   //      		lng: results[0].location.lng()
+   //    			};
+			//     var elevation = Math.round(results[0].elevation * 100) / 100;
+			//     infowindow.setPosition(coordinate);
+			//     infowindow.setContent('<h2>海拔：' + elevation + ' 公尺</h2>');
+			//     infowindow.open(map);
+   //  			});
+			// }
+
+
+		//計算兩點直線距離  https://ballaediworkshop.blogspot.com/2017/09/google-maps-javascript-api-library-web.html
+		// var Point1 = {
+  //         lat: 25.046402, 
+  //         lng: 121.517536
+  //       }
+		// var Point2 = {
+  //         lat: 25.033601, 
+  //         lng: 121.564793
+  //       }
+
+  //       var dist = google.maps.geometry.spherical.computeDistanceBetween(
+  //          new google.maps.LatLng(Point1),
+  //          new google.maps.LatLng(Point2)
+  //        )
+  //       console.log(dist);
+
+		}
+
+	</script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAb2lDof7yMn-TTXwt2hwVm4y92t1AqvyU&callback=initMap&libraries=places&libraries=geometry"
+        async defer></script>
+   
+
+
+
+</body>
+</html>

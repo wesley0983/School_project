@@ -21,11 +21,51 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 	<title>購物車</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<!--[if lt IE 9]>
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 	    <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
 	<![endif]-->
+	
+<!-- 信用卡 -->
+<link href="<%=request.getContextPath() %>/front-end/pro/card/card-js.min.css" rel="stylesheet" type="text/css" />
+<script src="<%=request.getContextPath() %>/front-end/pro/card/card-js.min.js"></script>
 	<style type="text/css">
+    .panel {
+      background-color: #F5F5F7;
+      border: 1px solid #ddd;
+      padding: 20px;
+      display: block;
+      width: 270px;
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0,0,0,.1);
+    }
+    .btncard {
+      background: rgb(68,175,231); /* Old browsers */
+      background: -moz-linear-gradient(top, rgba(68,175,231,1) 0%, rgba(49,152,223,1) 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top, rgba(68,175,231,1) 0%,rgba(49,152,223,1) 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom, rgba(68,175,231,1) 0%,rgba(49,152,223,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#44afe7', endColorstr='#3198df',GradientType=0 );
+      color: #fff;
+      display: block;
+      width: 100%;
+      border: 1px solid rgba(46, 86, 153, 0.0980392);
+      border-bottom-color: rgba(46, 86, 153, 0.4);
+      border-top: 0;
+      border-radius: 4px;
+      font-size: 17px;
+      text-shadow: rgba(46, 86, 153, 0.298039) 0px -1px 0px;
+      line-height: 34px;
+      -webkit-font-smoothing: antialiased;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .btn:hover {
+      cursor: pointer;
+    }
+/*************************************************/
 		.aa {
 			background-color: #faa;
 		}
@@ -152,79 +192,79 @@
 			<div class="row">
 
 				<!-- navbar -->
-				<div class="container-fluid ">
-					<div class="row">
-						<nav class="navbar navbar-default" role="navigation">
-							<div class="container">
-								<div class="navbar-header">
-									<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-										<span class="sr-only">選單切換</span>
-										<span class="icon-bar"></span>
-										<span class="icon-bar"></span>
-										<span class="icon-bar"></span>
-									</button>
-									<a class="navbar-brand" href="#">SPORTGO</a>
-								</div>
+<!-- 				<div class="container-fluid "> -->
+<!-- 					<div class="row"> -->
+<!-- 						<nav class="navbar navbar-default" role="navigation"> -->
+<!-- 							<div class="container"> -->
+<!-- 								<div class="navbar-header"> -->
+<!-- 									<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"> -->
+<!-- 										<span class="sr-only">選單切換</span> -->
+<!-- 										<span class="icon-bar"></span> -->
+<!-- 										<span class="icon-bar"></span> -->
+<!-- 										<span class="icon-bar"></span> -->
+<!-- 									</button> -->
+<!-- 									<a class="navbar-brand" href="#">SPORTGO</a> -->
+<!-- 								</div> -->
 
-								<!-- 手機隱藏選單區 -->
-								<div class="collapse navbar-collapse navbar-ex1-collapse ">
-									<!-- 左選單 -->
-									<ul class="nav navbar-nav">
-										<li class="active">
-											<a href="#">我的商品</a>
-										</li>
-										<li>
-											<a href="#">我的賣場分類</a>
-										</li>
-										<li>
-											<a href="#">我的銷售</a>
-										</li>
-										<li>
-											<a href="#">我的行銷活動</a>
-										</li>
-										<li>
-											<a href="#">我的進帳</a>
-										</li>
-										<li>
-											<a href="#">我的錢包</a>
-										</li>
-										<li>
-											<a href="#">賣場設定</a>
-										</li>
-									</ul>
-									<!-- 右選單 -->
-									<ul class="nav navbar-nav navbar-right">
+<!-- 								手機隱藏選單區 -->
+<!-- 								<div class="collapse navbar-collapse navbar-ex1-collapse "> -->
+<!-- 									左選單 -->
+<!-- 									<ul class="nav navbar-nav"> -->
+<!-- 										<li class="active"> -->
+<!-- 											<a href="#">我的商品</a> -->
+<!-- 										</li> -->
+<!-- 										<li> -->
+<!-- 											<a href="#">我的賣場分類</a> -->
+<!-- 										</li> -->
+<!-- 										<li> -->
+<!-- 											<a href="#">我的銷售</a> -->
+<!-- 										</li> -->
+<!-- 										<li> -->
+<!-- 											<a href="#">我的行銷活動</a> -->
+<!-- 										</li> -->
+<!-- 										<li> -->
+<!-- 											<a href="#">我的進帳</a> -->
+<!-- 										</li> -->
+<!-- 										<li> -->
+<!-- 											<a href="#">我的錢包</a> -->
+<!-- 										</li> -->
+<!-- 										<li> -->
+<!-- 											<a href="#">賣場設定</a> -->
+<!-- 										</li> -->
+<!-- 									</ul> -->
+<!-- 									右選單 -->
+<!-- 									<ul class="nav navbar-nav navbar-right"> -->
 
-										<li>
-											<a href="#"></a>
-										</li>
-										<li>
-											<a href="#">個人設定</a>
-										</li>
-										<li class="dropdown">
-											<a href="#" class="dropdown-toggle" data-toggle="dropdown">繁體中文
-												<b class="caret"></b>
-											</a>
-											<ul class="dropdown-menu">
-												<li>
-													<a href="#">切換成買家</a>
-												</li>
-												<li>
-													<a href="#">登出</a>
-												</li>
-											</ul>
-										</li>
-									</ul>
-								</div>
-								<!-- 手機隱藏選單區結束 -->
-							</div>
-						</nav>
-					</div>
-				</div>
+<!-- 										<li> -->
+<!-- 											<a href="#"></a> -->
+<!-- 										</li> -->
+<!-- 										<li> -->
+<!-- 											<a href="#">個人設定</a> -->
+<!-- 										</li> -->
+<!-- 										<li class="dropdown"> -->
+<!-- 											<a href="#" class="dropdown-toggle" data-toggle="dropdown">繁體中文 -->
+<!-- 												<b class="caret"></b> -->
+<!-- 											</a> -->
+<!-- 											<ul class="dropdown-menu"> -->
+<!-- 												<li> -->
+<!-- 													<a href="#">切換成買家</a> -->
+<!-- 												</li> -->
+<!-- 												<li> -->
+<!-- 													<a href="#">登出</a> -->
+<!-- 												</li> -->
+<!-- 											</ul> -->
+<!-- 										</li> -->
+<!-- 									</ul> -->
+<!-- 								</div> -->
+<!-- 								手機隱藏選單區結束 -->
+<!-- 							</div> -->
+<!-- 						</nav> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
 
 
 
-					                  <FORM METHOD="post" ACTION="<%= request.getContextPath()%>/ord/ord.do" name="form1" enctype="multipart/form-data">
+					                  
 										<div class="container-fluid">
 											<div class="row">
 													<!-- 表單 -->
@@ -242,10 +282,16 @@
 																				</c:forEach>
 																			</ul>
 																		</c:if>
-																		<div>
-																			<h2 class="fontsize">購物車</h2>
-																		</div>
+																		<table>
+																		    <td>
+																				<div>
+																					<img  src="<%=request.getContextPath()%>/front-end/pro/page/cart_icon.jpg" style="width: 150px;height: 150px;">
+																				</div>
+																			</td>
+																			<td><h2 class="fontsize">購物車</h2></td>
+																		</table>
 																		<!-- 關鍵字搜尋 -->
+																		<FORM METHOD="post" ACTION="<%=request.getContextPath()%>/pro/pro.do" name="formquery">
 																			<div class="container">
 																				<div class="row">
 																					<!-- 搜尋表單 -->
@@ -258,7 +304,8 @@
 																								<div class="input-group">
 																									<input type="text" class="form-control" placeholder="請輸入關鍵字">
 																									<span class="input-group-btn">
-																										<button class="btn btn-info" type="button">搜尋</button>
+																										<button class="btn btn-info" type="button" onClick="document.formquery.submit();">搜尋</button>
+																										<input type="hidden" name="action" value="pro_ByCompositeQuery">
 																									</span>
 																								</div>
 																								
@@ -268,9 +315,9 @@
 																					<div class="col-xs-12 col-sm-4"></div>
 																				</div>
 																			</div>
-																		
+																		</FORM>
 <!--  -------------------------------------------------------------------------所有商品 -->
-																				
+																			<FORM METHOD="post" ACTION="<%= request.getContextPath()%>/ord/ord.do" name="form1" enctype="multipart/form-data">						
 																				<table class="table table-hover ">
 																					<thead>
 																						<tr class="tablebgc">
@@ -285,49 +332,70 @@
 																					<tbody>
 																						<jsp:useBean id="productClassSvc" scope="page" class="com.productclass.model.ProductClassService" />
 																						
-																						<c:forEach var="proVO" items="${proVOList}">
-																							<tr>
-																								<td>
-																								<!-- 核取方塊大小 -->
-																									<input type="checkbox" name="pro_no" value="${proVO.pro_no}" class="box">
-
-																								</td>
-																								<!-- 商品圖片名稱 -->
-																								<td style="text-align: left;">
-																									<div style="height: 80px">
-																										<img class="imgsize" src="<%=request.getContextPath()%>/pro/proImg.do?pro_no=${proVO.pro_no}"> ${proVO.pro_name}
-																									</div>
-																								</td>
-																								
-																								<!-- 商品單價 -->
-																								<td>
-																									${proVO.pro_bonus}
-																								</td>
-																								<!-- 商品數量 -->
-																								<td>
-																				                    <input type="button" name="name" value="-" class="reduce" />
-																					                <input type="text" name="name" value="${hAll[proVO.pro_no]}" class="textNum" style="text-align:center;" size="1"/>
-																					                <input type="button" name="name" value="+" class="add" />
-																					                <input type="text" class="return_mem_no" value="<%=session.getAttribute("mem_no")%>" style="display: none;"/>
-																					                <input type="text" class="return_pro_no" value="${proVO.pro_no}" style="display: none;"/>
-																					                <input type="text" class="return_pro_bonus" value="${proVO.pro_bonus}" style="display: none;"/>
-																					                <input class="danjia" value="" style="display: none;"/>
-																								</td>
-																								<!-- 商品總計 -->
-																								<td>
-																									<div id="${proVO.pro_no}" class="sumTheNumber">${hAll[proVO.pro_no] * proVO.pro_bonus}</div>
-																								</td>
-																								<!-- 下拉式按鈕 -->
-																								<td>
-																								    <button type="button" class="deletedata" value="${proVO.pro_no}"  >刪除</button>
-																								</td>
-																							</tr>
-																						</c:forEach>
-																						
-                                                                                    
+																						<c:choose>
+																						    <c:when test="${proVOList  == null}">
+																						        <tr>
+																						            <td colspan="6"><h1>購物車尚無商品</h1></td>
+																						        </tr>
+																						    </c:when>
+																						    <c:otherwise>
+																								<c:forEach var="proVO" items="${proVOList}">
+																									<tr>
+																									    
+																										<td>
+																										<!-- 核取方塊大小 -->
+																											<input type="checkbox" name="pro_no" value="${proVO.pro_no}" class="box">
+		
+																										</td>
+																										<!-- 商品圖片名稱 -->
+																										<td style="text-align: left;">
+																											<div style="height: 80px">
+																												<img class="imgsize" src="<%=request.getContextPath()%>/pro/proImg.do?pro_no=${proVO.pro_no}"> ${proVO.pro_name}
+																											</div>
+																										</td>
+																										
+																										<!-- 商品單價 -->
+																										<td>
+																											${proVO.pro_bonus}
+																										</td>
+																										<!-- 商品數量 -->
+																										<td>
+																						                    <input type="button" name="name" value="-" class="reduce" />
+																							                <input type="text" name="name" value="${hAll[proVO.pro_no]}" class="textNum" style="text-align:center;" size="1"/>
+																							                <input type="button" name="name" value="+" class="add" />
+																							                <input type="text" class="return_mem_no" value="<%=session.getAttribute("mem_no")%>" style="display: none;"/>
+																							                <input type="text" class="return_pro_no" value="${proVO.pro_no}" style="display: none;"/>
+																							                <input type="text" class="return_pro_bonus" value="${proVO.pro_bonus}" style="display: none;"/>
+																							                <input class="danjia" value="" style="display: none;"/>
+																										</td>
+																										<!-- 商品總計 -->
+																										<td>
+																											<div id="${proVO.pro_no}" class="sumTheNumber">${hAll[proVO.pro_no] * proVO.pro_bonus}</div>
+																										</td>
+																										<!-- 按鈕 -->
+																										<td>
+																										    <button type="button" class="deletedata" value="${proVO.pro_no}"  >刪除</button>
+																										</td>
+																									</tr>
+																								</c:forEach>
+																							</c:otherwise>
+																						</c:choose>
 																					</tbody>
 																				</table>
-
+																				<div class="container">
+																					<div class="row">
+																						<div class="col-xs-12 col-sm-6"></div>
+																						<div class="col-xs-12 col-sm-6">
+																							<center>
+																								<h3 style="margin-top: 0px;">商品
+																						            <input type="button" class="btn btn-info" name="name" value="全選" id="allSelect" />
+																		    						<input type="button" class="btn btn-danger" name="name" value="取消全選" id="notSelect" />
+																					            </h3>
+																				            </center>
+																						</div>
+																					</div>
+																				</div>
+                                                                      
 <!-- ---------------------------------------------------收貨地址 -->
 											<div class="container">
 												<div class="row">
@@ -365,22 +433,19 @@
 
 													</div>
 													<div class="col-xs-12 col-sm-6">
+													    <br>
 														<div>
-															<div class="form-group col-lg-6">
-																<label for="zip">信用卡卡號</label>
-																<input type="number" name="card" 
-																class="form-control" value="${mem_card}">
-															</div>
-														</div>
-														<div>
-															<center><h3>總計金額<div id="testnum" ></div></h3></center>
-													    </div>
-														<div>
-														    <center><input type="button" class="btn btn-info" name="name" value="全選" id="allSelect" />
-									    					<input type="button" class="btn btn-danger" name="name" value="取消全選" id="notSelect" />
-															<input type="submit" class="btn btn-info" value="去買單"></center>
-															<input type="hidden" name="ord_amount" value="test">
-															<input type="hidden" name="action" value="insert">
+															<center>														
+															  <div class="panel">
+<!-- 															    <form id="subscription-form"> -->
+															
+															      <div class="card-js stripe" data-stripe="true"></div>
+															      <button type="submit" class="btncard" ><div id="testnum"></div></button>
+															      <input type="hidden" name="ord_amount" value="test">
+																  <input type="hidden" name="action" value="insert">
+<!-- 															    </form> -->
+															  </div>
+															</center>
 														</div>
 													</div>
 												</div>
@@ -406,11 +471,11 @@
 		</div>
 
 
-			<script src="https://code.jquery.com/jquery.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 			<script type="text/javascript">
 				$(document).ready(function(){
 					//用遍歷計算總價
+					$('#testnum').html('Pay $');
 					getTotals();
 					//計算總價，編寫總價方法(尚未用到)
 		            function totalPrice() {
@@ -424,17 +489,17 @@
 
 		            //設置數量框不可手動填寫（此處為避免不必要的操作失誤）
 		            $(".textNum").prop("disabled", true);
-
+                    //當商品庫存量剛好為1時
 		            //減號邏輯
 		            $(".reduce").click(function () {
 		                var num = $(this).siblings(".textNum").val();  //獲取數量框裏的數值
 		                var mem_no = $(this).siblings(".return_mem_no").val();//獲取session的當前編號
 		                var pro_no =  $(this).siblings(".return_pro_no").val();//獲取pro_no選擇的商品
 		                var pro_bonus = $(this).siblings(".return_pro_bonus").val();//獲取pro_bonus商品單價
-		                
+		                if(num != 1){//數量為1時不能遞減
 		                num--;  //單擊“-”減號時，數量遞減
-		                $(this).siblings(".textNum").val(num); //把數量變化後的新值放入數量框中
-		                
+		                	$(this).siblings(".textNum").val(num); //把數量變化後的新值放入數量框中
+		                }
 			                $.ajax({
 								 type: "POST",
 								 url: "<%= request.getContextPath()%>/shoppingCartServlet/shoppingCartServlet.do",
@@ -446,7 +511,9 @@
 							     },
 							     error: function(){alert("AJAX-class發生錯誤囉!")}
 					         })
-		                
+		                if (num < ${proVO.pro_stock}){  //當庫存數量大於購買數量時解除封鎖狀態
+		                	$(this).siblings(".add").prop("disabled", false);
+		                }
 		                if (num <= 1) {
 		                    $(this).prop("disabled", true); //當輸入框內數值為0時，使“-”減號處於不可用狀態。
 		                };
@@ -455,7 +522,7 @@
 		                $(this).siblings(".xiaoji").text(xiaoji); //把得到的小計值放入數量框中顯示
 		                totalPrice();//調用“總價”方法，使每點擊減號，數量變化時，總價跟着變化
 		                
-		            })
+		            });
 
 		            //加號邏輯（邏輯如同減號的邏輯差不多）
 		            $(".add").click(function () {
@@ -463,6 +530,10 @@
 		                var mem_no = $(this).siblings(".return_mem_no").val();//獲取session的當前編號
 		                var pro_no =  $(this).siblings(".return_pro_no").val();//獲取pro_no選擇的商品
 		                var pro_bonus = $(this).siblings(".return_pro_bonus").val();//獲取pro_bonus商品單價
+		                if (num == ${proVO.pro_stock}){ //當庫存數量小於購買數量時封鎖狀態
+				        	$(this).prop("disabled", true);
+		                    return;
+		                }
 		                num++;
 		                $(this).siblings(".textNum").val(num);
 		                
@@ -477,7 +548,7 @@
 							     },
 							     error: function(){alert("AJAX-class發生錯誤囉!")}
 					         })
-		                
+				        
 		                if (num > 0) {
 		                    $(this).siblings(".reduce").prop("disabled", false); //判斷當輸入框內數值大於0，使“-”減號處於解封可用狀態。
 		                };
@@ -486,12 +557,12 @@
 		                $(this).siblings(".xiaoji").text(xiaoji);
 		                totalPrice();
 		                
-		            })
+		            });
 				            
 		            //全選
 		            $("#allSelect").click(function () {
 		                $(".box").prop("checked", true);
-		            })
+		            });
 		
 		            //取消全選
 		            $("#notSelect").click(function () {
@@ -515,11 +586,11 @@
 									 window.location.replace("<%= request.getContextPath()%>/shoppingCartServlet/shoppingCartServlet.do?action=getAll_For_Display"); 
 							     },
 							     error: function(){alert("AJAX-class發生錯誤囉!")}
-					         })
-						})
-					})
+					         });
+						});
+					});
                                    
-				})
+				});
 				function subtraction(mem_no,pro_no,num,pro_bonus){  //數量加減時帶回去controller處理
 					var queryString= {"action":"insert","mem_no":mem_no, "pro_no":pro_no,"pro_count":num,"pro_bonus":pro_bonus};
 					return queryString;
@@ -530,11 +601,13 @@
 					return queryString;
 				}
 				
-				var total = 0;
+				
 				function getTotals(){  //總計的計算用遍歷的方式
+					var total = 0;
 					$(".sumTheNumber").each(function(e){
 						total += parseInt($(this).text());
-						$('#testnum').html(total)
+						console.log(parseInt($(this).text()));
+						$('#testnum').html('Pay $'+total)
 					});
 				}
 				

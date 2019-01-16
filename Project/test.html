@@ -1,126 +1,162 @@
 <!DOCTYPE html>
 <html lang="">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-		<title>Title Page</title>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-		<!--[if lt IE 9]>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+	<title>Title Page</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+	<!--[if lt IE 9]>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
-	</head>
-	<style type="text/css">
+</head>
+<style type="text/css">
+	.s-txt {
+		/*float:left;*/
+	}
 
-				.s-txt {
-			/*float:left;*/
+	.s-xxs {
+		display: inline-block;
+		vertical-align: middle;
+	}
 
-		}
-		.s-xxs {
-			display:inline-block;
-			vertical-align:middle;
-		}
-		.s-xx { 
-			float:left;
-			color:#e3e3e3;
-			padding-right:8px;
-			cursor:pointer;
-			font-size: 25px;
-			vertical-align:middle;
-		}
-				/*外框*/
-		.s-haoping {
-			color:#f13a3a;
-			border:1px solid #f13a3a;
-			padding:2px 4px;
-			font-size:12px;
-			vertical-align:middle;
-			position:relative;
-			display:none;
-		}
-		/*外框*/
-		.s-haoping .s-hp-triangle0 {
-			border-width:4px;
-			position:absolute;
-			top:5px;
-			left:-8px;
-			border-color:transparent #f13a3a transparent transparent;
-			border-style:dashed solid dashed dashed;
-		}
-		/*外框*/
-		.s-haoping .s-hp-triangle1 {
-			border-width:4px;
-			position:absolute;
-			top:5px;
-			left:-7px;
-			border-color:transparent  #f8f8f8 transparent transparent;
-			border-style:dashed solid dashed dashed;
-		}
-				.divStyle{
-            border-bottom: 1px dotted #c8cbcc;
-		}
-		/*星星顏色*/
-		.color-f13a3a {
-			color:#f13a3a;
-		}
-	</style>
-	<body>
-		
-		<!-- 評價系統 -->
-			<div class="star">
-			    <span class="s-txt">產品評價：</span>
-				    <span class="s-xxs">
-				        <span class="iconfont s-xx">☆</span>
-					    <span class="iconfont s-xx">☆</span>
-					    <span class="iconfont s-xx">☆</span>
-					    <span class="iconfont s-xx">☆</span>
-					    <span class="iconfont s-xx">☆</span>
-				    </span>
-			    <span class="s-haoping">
-				<em class="s-hp-triangle0">
-			        </em><em class="s-hp-triangle1">
-			        </em><span class="s-hp-txt">5分好評</span>
-			    </span>
-			</div>
-		
-		
-		<script src="https://code.jquery.com/jquery.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	.s-xx {
+		float: left;
+		color: #e3e3e3;
+		padding-right: 8px;
+		cursor: pointer;
+		font-size: 25px;
+		vertical-align: middle;
+	}
 
-		<script type="text/javascript">
-	
-$(function() {
-    var isclick = false;
-    var arr = ["1分差評", "2分中評", "3分中評", "4分好評", "5分好評"];
-    var clickind = -1;
+	/*外框*/
 
-    $(".s-xx").on("click", function() {
-        isclick = true;
-        clickind = $(this).index();
-        console.log(clickind);
-    });
-    $(".s-xx").hover(function() {
-        var ind = $(this).index();
-        $(".s-xx").removeClass("color-f13a3a");
-        for (var i = 0; i <= ind; i++) {
-            $(".s-xx").eq(i).addClass("color-f13a3a");
-            $(".s-haoping").find(".s-hp-txt").text(arr[i]).end().show();
-        }
-    }, function() {
-        if (!isclick) {
-            $(".s-xx").removeClass("color-f13a3a");
-            $(".s-haoping").hide();
-        } else {
-            $(".s-xx").removeClass("color-f13a3a");
-            for (var i = 0; i <= clickind; i++) {
-                $(".s-xx").eq(i).addClass("color-f13a3a");
-                $(".s-haoping").find(".s-hp-txt").text(arr[i]).end().show();
-            }
-        }
-    });
-});
+	.s-haoping {
+		color: #f13a3a;
+		border: 1px solid #f13a3a;
+		padding: 2px 4px;
+		font-size: 12px;
+		vertical-align: middle;
+		position: relative;
+		display: none;
+	}
 
-</script>
-	</body>
+	/*外框*/
+
+	.s-haoping .s-hp-triangle0 {
+		border-width: 4px;
+		position: absolute;
+		top: 5px;
+		left: -8px;
+		border-color: transparent #f13a3a transparent transparent;
+		border-style: dashed solid dashed dashed;
+	}
+
+	/*外框*/
+
+	.s-haoping .s-hp-triangle1 {
+		border-width: 4px;
+		position: absolute;
+		top: 5px;
+		left: -7px;
+		border-color: transparent #f8f8f8 transparent transparent;
+		border-style: dashed solid dashed dashed;
+	}
+
+	.divStyle {
+		border-bottom: 1px dotted #c8cbcc;
+	}
+
+	/*星星顏色*/
+
+	.color-f13a3a {
+		color: #f13a3a;
+	}
+</style>
+
+<body>
+
+	<!-- 評價系統 -->
+	<div class="star">
+		<span class="s-txt">產品評價：</span>
+		<span class="s-xxs">
+			<span class="iconfont s-xx">☆</span>
+			<span class="iconfont s-xx">☆</span>
+			<span class="iconfont s-xx">☆</span>
+			<span class="iconfont s-xx">☆</span>
+			<span class="iconfont s-xx">☆</span>
+		</span>
+		<span class="s-haoping">
+			<em class="s-hp-triangle0">
+			</em>
+			<em class="s-hp-triangle1">
+			</em>
+			<span class="s-hp-txt">5分好評</span>
+		</span>
+	</div>
+	<!-- 評價系統 -->
+	<div class="star">
+		<span class="s-txt">產品評價：</span>
+		<span class="s-xxs">
+			<span class="iconfont s-xx">☆</span>
+			<span class="iconfont s-xx">☆</span>
+			<span class="iconfont s-xx">☆</span>
+			<span class="iconfont s-xx">☆</span>
+			<span class="iconfont s-xx">☆</span>
+			<input type="hidden" name="" id="test" value="">
+		</span>
+		<span class="s-haoping">
+			<em class="s-hp-triangle0">
+			</em>
+			<em class="s-hp-triangle1">
+			</em>
+			<span class="s-hp-txt">5分好評</span>
+		</span>
+	</div>
+
+
+	<script src="https://code.jquery.com/jquery.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+
+		$(function () {
+			var isclick = false;
+			var arr = ["1分差評", "2分中評", "3分中評", "4分好評", "5分好評"];
+			var clickind = -1;
+
+			$(".s-xx").on("click", function () {
+				isclick = true;
+				clickind = $(this).index();
+				// $("#test").val(clickind+1)
+				// console.log($("#test").val());
+			});
+			$(".s-xx").hover(function () {
+				var ind = $(this).index();
+				// $(".s-xx").removeClass("color-f13a3a");
+				for (var i = 0; i <= ind; i++) {
+					$(this).parent().find(".s-xx").eq(i).addClass("color-f13a3a");
+					$(this).parent().parent().find(".s-haoping").find(".s-hp-txt").text(arr[i]).end().show();
+				}
+			}, function () {
+				if (!isclick) {
+					$(this).parent().find(".s-xx").removeClass("color-f13a3a");
+					// $(this).next().removeClass("color-f13a3a");
+					$(".s-haoping").hide();
+				} 
+				else {
+					$(this).parent().find(".s-xx").removeClass("color-f13a3a");
+					for (var i = 0; i <= clickind; i++) {
+						$(this).parent().find(".s-xx").eq(i).addClass("color-f13a3a");
+						$(this).parent().parent().find(".s-haoping").find(".s-hp-txt").text(arr[i]).end().show();
+					}
+				}
+			});
+		});
+
+	</script>
+</body>
+
 </html>
