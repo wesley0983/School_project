@@ -2,7 +2,7 @@
 @import 'fonts';
 @import 'mixin';
 @import 'responsive';
-
+ 
 /* [Master Stylesheet] */
 
 /*
@@ -2503,7 +2503,7 @@ img {
     .page-item {
         .page-link {
             color: $text-color;
-            width: 46px;
+            width: 80px;
             height: 46px;
             border-radius: 50%;
             text-align: center;
@@ -2529,7 +2529,7 @@ img {
         .page-item {
             .page-link {
                 color: $text-color;
-                width: 46px;
+                width: 80px;
                 height: 46px;
                 border-radius: 0;
                 text-align: center;
